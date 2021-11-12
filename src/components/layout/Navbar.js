@@ -22,13 +22,13 @@ return (
           <div id="my-nav" class="collapse navbar-collapse">
               <ul class="navbar-nav mr-auto">
                   <li class="nav-item"><Link class="nav-link" to="/">Inicio</Link></li>
-                  <li class="nav-item"><a class="nav-link" href="#services">Servicios</a></li>
+         {/*          <li class="nav-item"><a class="nav-link" href="#services">Servicios</a></li>
                   <li class="nav-item"><a class="nav-link" href="#about">Ayuda</a></li>
-                  <li class="nav-item"><a class="nav-link" href="#contact">Contacto</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#contact">Contacto</a></li> */}
               </ul>
               <form class="form-inline my-2 my-lg-0">
                   <Link class="btn btn-outline-dark my-2 my-sm-0 mr-3 text-uppercase" to="/login">Iniciar Sesion</Link>
-                  <a href="#"class="btn btn-info my-2 my-sm-0 text-uppercase">Registrarse</a>
+                  <Link to ="/register"class="btn btn-info my-2 my-sm-0 text-uppercase">Registrarse</Link>
               </form>
           </div>
       </div>
