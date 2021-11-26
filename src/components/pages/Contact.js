@@ -10,7 +10,7 @@ const Contact = () => {
   <div class="container">
       <div class="row">
           <div class="col-lg-6" id="contact">
-              <h4> CONTACTA </h4>
+              <h4> CONTACTO </h4>
               <input type="text" class="form-control" placeholder="Nombre Completo"/>
               <input type="email" class="form-control" placeholder="Correo Electronico"/>
               <textarea class="form-control" placeholder="Mensaje"></textarea>
@@ -19,7 +19,7 @@ const Contact = () => {
           <div class="col-lg-6">
               <div class="row">
                   <div class="col-6">
-                      <h4>DESCUBRE LABORAR</h4>
+                      <h4>DESCUBRE <b>SOLIDAR</b></h4>
                       <ul class="nav flex-column company-nav">
                           <li class="nav-item"><a class="nav-link" href="#">Quienes somos</a></li>
                           <li class="nav-item"><a class="nav-link" href="#">Que te ofrecemos</a></li>
@@ -39,7 +39,7 @@ const Contact = () => {
                       </ul>
                   </div>
                   <div class="col-6">
-                      <h4>COLABORA</h4>
+                      <h4><b>SOLIDAR</b></h4>
                       <ul class="nav flex-column services-nav">
                         <li class="nav-item"><a class="nav-link" href="#">Dona</a></li>
                         <li class="nav-item"><a class="nav-link" href="#">Cuenta tu historia</a></li>
