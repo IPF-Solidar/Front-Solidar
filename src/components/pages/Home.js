@@ -1,7 +1,7 @@
 //import animals from '../../assets/slider-01.jpg'
 import React,{useState,useEffect} from 'react';
 //import { Link } from 'react-router-dom';
-
+import '../assets/styles/css/tarjeta/card.css'
 
 
 const Home = () => {
@@ -39,61 +39,40 @@ const Home = () => {
     
     return (
         <div>
-        <div class="container">
-  <div class="info">
-    <h1>SOLIDAR</h1><span>Ayudemos a todos <i class='fa fa-heart animated infinite pulse'></i> </span>
+<div class="container 2">
+<div className="row">
+  <div class="info" style={{textAlign:"center"}}>
+    <span>Ayudemos a todos <i class='fa fa-heart animated infinite pulse'></i> </span>
   </div>
-  
-  
-
-        {
-                listatadoCompleto.length > 0 ? listatadoCompleto.map(item => { 
-                    
-                    
+  {
+    listatadoCompleto.length > 0 ? listatadoCompleto.map(item => { 
                     return(
-
-                      <div class="column">
-    
-    
-                      <div class="post-module">
-                        
-                        <div class="thumbnail">
-                          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/169963/photo-1429043794791-eb8f26f44081.jpeg"/>
-                        </div>
-                        
-                        <div class="post-content">
-                          <div class="category">NUEVO</div>
-                          <h1 class="title">{item.titulo}</h1>
-                          <h2 class="sub_title">{item.descripcion}</h2>
-                         {/*  <p class="description">New York, the largest city in the U.S., is an architectural marvel with plenty of historic monuments, magnificent buildings and countless dazzling skyscrapers.</p> */}
-
-
-
-                         
-                         <div id="outer">
-                         <div class="button_slide slide_right">Detalles </div>
-                         </div>
-
-                            
-                          <div class="post-meta"><span class="timestamp"><i class="fa fa-clock-o"></i>
-                              6 mins ago</span><span class="comments"><i class="bx bx-street-view"></i>{item.autor.nombre} {item.autor.apellido}</span></div>
-                        </div>
-                      </div>
-                      <br/>
-                      <br/>
-                    </div>
-                   
-                  )
-                }): <h1 style={{margin:'auto', color:'black'}}><b>NO SE HAN CARGADO LAS PUBLICACIONES</b></h1>
-                    
-            }    
-            
+            <div class="cardcontainer col-md-3 ">
+                <div class="photo"> <img src="https://images.pexels.com/photos/2346006/pexels-photo-2346006.jpeg?auto=format%2Ccompress&cs=tinysrgb&dpr=1&w=500"/>
+                    <div class="photos">NUEVO</div>
+                </div>
+                <div class="content">
+                    <p class="txt4">{item.titulo}</p>
+                    <p class="txt5">{item.descripcion}</p>
+                    {/* <p class="txt2">New York, the largest city in the U.S., is an architectural marvel with plenty of historic monuments, magnificent buildings and countless dazzling skyscrapers.</p> */}
+                </div>
+                <div class="footer2">
+                    <p><a class="waves-effect waves-light btn" href="#">DETALLES</a></p>
+                    <p class="txt3"><i class="far fa-clock"></i>10 Minutes Ago <span class="comments"><i class="fas fa-comments"></i>{item.autor.nombre} {item.autor.apellido}</span></p>
+                </div>
             </div>
-
-
+           
             
-
+         )
+        }): <h1 style={{margin:'auto', color:'black'}}><b>NO SE HAN CARGADO LAS PUBLICACIONES</b></h1>
+            
+    }  
+    
+     </div>
+     
+<br/>
 </div>
+        </div>
     )
 }
 

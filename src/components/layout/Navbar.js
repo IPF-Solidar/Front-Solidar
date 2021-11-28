@@ -1,10 +1,15 @@
 import React,{useState,useEffect}  from 'react'
 import { Link } from "react-router-dom";
 
-import '../assets/css/font-awesome.css';
-import '../assets/owl-carousel/assets/owl.carousel.min.css';
-import '../assets/css/bootstrap.min.css';
-import '../assets/css/estilo.css';
+
+import '../assets/styles/css/bootstrap.css';
+import '../assets/styles/css/fontawesome-all.css';
+import '../assets/styles/css/swiper.css';
+import '../assets/styles/css/magnific-popup.css';
+import '../assets/styles/css/styles.css'; 
+
+import logo from '../assets/styles/images/logo.svg'
+
 import 'animate.css';
 
 
@@ -16,7 +21,7 @@ const Navbar = (props) => {
     const [Login, setLogin] = useState(null);
 
   useEffect(() => {
-    const usuarioT = localStorage.getItem('loggedUser')
+    const usuarioT = localStorage.getItem('Solidar-Usuario')
     if (usuarioT){
 			const user = JSON.parse(usuarioT)
 			setLogin(user)
@@ -24,41 +29,64 @@ const Navbar = (props) => {
 	}, [])
 
   const logaut = () => {
-		window.localStorage.removeItem('loggedUser')
-    window.location.href="/login"
+		window.localStorage.removeItem('Solidar-Usuario')
+    window.location.href="/"
 	}
 
     const renderCerrarSesion = () =>
 {
   return ( 
-  <button class="btn btn-info my-2 my-sm-0 text-uppercase"  onClick = {logaut}>
-    CERRAR SESION
-  </button>
+    <li class="nav-item">
+    <Link class="nav-link page-scroll" onClick={logaut}>Cerrar Sesion</Link>
+    </li>
   )
 }
 
 const renderLoginButton = () => {
     return(
-        <Link class="btn btn-outline-dark my-2 my-sm-0 mr-3 text-uppercase" to="/login">Iniciar Sesion</Link>
+        <li class="nav-item">
+            <Link to= "/login" class="nav-link page-scroll" href="#features">INICAR SESION</Link>
+        </li>
     )
  }
  
  const renderRegisterButton = () => {
     return( 
-        <Link to ="/register"class="btn btn-info my-2 my-sm-0 text-uppercase">Registrarse</Link>
+        <li class="nav-item">
+            <Link to="/register" class="nav-link page-scroll" href="#preview">REGISTRARSE</Link>
+        </li>
+ )
+ }
+ const renderDetallesButton = () => {
+    return( 
+        <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle page-scroll" href="#details" id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">DETALLES</a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="terms-conditions.html"><span class="item-text">TERMINOS Y CONDICIONES</span></a>
+                        <div class="dropdown-items-divide-hr"></div>
+                        <a class="dropdown-item" href="privacy-policy.html"><span class="item-text">PRIVACIDAD Y POLITICA</span></a>
+                    </div>
+        </li>
  )
  }
 
 return (
   <>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light bg-transparent" id="gtco-main-nav">
-      <div class="container"><Link to="/"><a class="navbar-brand animate__animated animate__lightSpeedInLeft">SOLIDAR</a></Link>
-          <button class="navbar-toggler" data-target="#my-nav" onclick="myFunction(this)" data-toggle="collapse"><span
-                  class="bar1"></span> <span class="bar2"></span> <span class="bar3"></span></button>
-          <div id="my-nav" class="collapse navbar-collapse">
-              <ul class="navbar-nav mr-auto">
-              </ul>
-              <form class="form-inline my-2 my-lg-0">
+  <nav class="navbar navbar-expand-md navbar-dark navbar-custom fixed-top">
+        
+         <a class="navbar-brand logo-text page-scroll" href="">Solidar</a>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-awesome fas fa-bars"></span>
+            <span class="navbar-toggler-awesome fas fa-times"></span>
+        </button>
+        
+
+        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <Link to="/" class="nav-link page-scroll">INICIO <span class="sr-only">(current)</span></Link>
+                </li>
                 {
                     Login
                     ?""
@@ -69,18 +97,25 @@ return (
                     ?renderCerrarSesion()
                     :renderRegisterButton()
                   }
-                  {/* <Link class ="btn btn-warning" type="button" to= {{
-                        pathname:'/publicaciones',
-                        datos:{profesionales: listProf}
-                    }}
-                    >INICIO
-                    </Link> */}
-              </form>
-          </div>
-      </div>
-  </nav>
- 
-</>
+
+            </ul>
+            <span class="nav-item social-icons">
+                <span class="fa-stack">
+                    <a href="#your-link">
+                        <i class="fas fa-circle fa-stack-2x"></i>
+                        <i class="fab fa-facebook-f fa-stack-1x"></i>
+                    </a>
+                </span>
+                <span class="fa-stack">
+                    <a href="#your-link">
+                        <i class="fas fa-circle fa-stack-2x"></i>
+                        <i class="fab fa-twitter fa-stack-1x"></i>
+                    </a>
+                </span>
+            </span>
+        </div>
+    </nav>
+  </>
     )
 }
 

@@ -1,6 +1,6 @@
 //import animals from '../../assets/slider-01.jpg'
 import React,{useEffect, useState} from 'react';
-import Portada from '../assets/images/portada.jpg';
+
 
 import { useParams } from 'react-router';
 
@@ -39,7 +39,7 @@ const Detalle = () => {
              
       <section class="section swiper-container swiper-slider swiper-classic bg-gray-2" data-loop="true" data-autoplay="4000" data-simulate-touch="false" data-slide-effect="fade">
             <div class="swiper-wrapper">
-                <div class="swiper-slide text-center"><img src= {Portada}/>
+                <div class="swiper-slide text-center"><img src= "{Portada}"/>
                     <div class="container">
                         <div class="row justify-content-center">
                             

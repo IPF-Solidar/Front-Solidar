@@ -1,13 +1,9 @@
 import React, {useState,useEffect} from 'react'
 import { useHistory} from "react-router-dom"
-import '../assets/Login_v1/fonts/font-awesome-4.7.0/css/font-awesome.min.css'
-import '../assets/Login_v1/vendor/animate/animate.css'
-import '../assets/Login_v1/vendor/css-hamburgers/hamburgers.min.css'
-import '../assets/Login_v1/vendor/select2/select2.min.css'
-import '../assets/Login_v1/css/util.css'
-import '../assets/Login_v1/css/main.css'
 
-import logo from '../assets/Login_v1/images/img-03.png'
+import '../assets/styles/Login/styleRegistro.css'
+
+
 
 const Register = () => {
 
@@ -66,120 +62,91 @@ const Register = () => {
 
 
     return (
-        <div class="limiter">
-		<div class="container-login100">
-			<div class="wrap-login100">
-				<div class="login100-pic js-tilt" data-tilt>
-					<img src={logo} alt="IMG"/>
-                    
-				</div>
+        <>
+	<div class="container register">
+                <div class="row">
+                    <div class="col-md-3 register-left">
+                        <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt=""/>
+                        <h3>BIENVENIDO A SOLIDAR</h3>
+                        <p>Ya tienes una cuenta en solidar ?</p>
+                        <input type="submit" name="" value="INICAR SESION"/><br/>
+                    </div>
+                    <div class="col-md-9 register-right">
+                        
+                        <div class="tab-content" id="myTabContent">
+                            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                <h3 class="register-heading" style={{color:"white"}}>REGISTRO!!!</h3>
+                                <div class="row register-form">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <input 
+											type="text"
+											class="form-control" 
+											value= {nombre}
+											onChange={(e) => {setNombre(e.target.value)}}
+											placeholder="Nombre *" />
+                                        </div>
+                                        <div class="form-group">
+                                            <input 
+											type="text" 
+											class="form-control" 
+											value= {apellido}
+											onChange={(e) => {setApellido(e.target.value)}}
+											placeholder="Apellido *"  />
+                                        </div>
+                                        <div class="form-group">
+                                            <input 
+											type="text" 
+											class="form-control"
+											value= {dni}
+											onChange={(e) => {setDni(e.target.value)}}
+											placeholder="DNI *"  />
+                                        </div>
+                                        <div class="form-group">
+                                            <input 
+											type="text" 
+											class="form-control"
+											value= {domicilio}
+											onChange={(e) => {setDomicilio(e.target.value)}} 
+											placeholder="Domicilio *"  />
+                                        </div>
 
-				<form class="login100-form validate-form">
-					<span class="login100-form-title">
-						SOLIDAR
-					</span>
+                                    </div>
+                                    <div class="col-md-6">
+										<div class="form-group">
+												<input 
+												type="date" 
+												class="form-control" 
+												value= {fechaNacimiento}
+												onChange={(e) => {setFechaNacimiento(e.target.value)}}
+												placeholder="Fecha De Cumpleaños *"  />
+										</div>
+                                        <div class="form-group">
+                                            <input 
+											type="email" 
+											class="form-control" 
+											value= {email}
+											onChange={(e) => {setEmail(e.target.value)}}
+											placeholder="Correo Electrnico *"  />
+                                        </div>
+										<div class="form-group">
+											<input 
+											type="password" 
+											class="form-control" 
+											value= {password}
+											onChange={(e) => {setPassword(e.target.value)}}
+											placeholder="Contraseña *" />
+										</div>
+                                        <input type="button" class="btnRegister" onClick={RegistrarNuevoUser} value="Register"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-                    <div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
-						<input class="input100" 
-						value= {nombre}
-						onChange={(e) => {setNombre(e.target.value)}}
-						type="text" 
-						name="email" 
-						placeholder="Nombre"/>
-						<span class="focus-input100"></span>
-						<span class="symbol-input100">
-                            <i class="bx bxs-user" aria-hidden="true"></i>
-						</span>
-					</div>
-
-                    <div class="wrap-input100 validate-input" data-validate = "Usuario incorrecto">
-						<input class="input100" 
-						value= {apellido}
-						onChange={(e) => {setApellido(e.target.value)}}
-						type="text" 
-						name="email" 
-						placeholder="Apellido"/>
-						<span class="focus-input100"></span>
-						<span class="symbol-input100">
-                            <i class="bx bxs-user" aria-hidden="true"></i>
-						</span>
-					</div>
-					
-					<div class="wrap-input100 validate-input" data-validate = "Dni mal ingresado">
-						<input class="input100" 
-						value= {dni}
-						onChange={(e) => {setDni(e.target.value)}}
-						type="text" 
-						name="dni" 
-						placeholder="DNI"/>
-						<span class="focus-input100"></span>
-						<span class="symbol-input100">
-                            <i class="bx bxs-user-pin" aria-hidden="true"></i>
-						</span>
-					</div>
-
-					<div class="wrap-input100 validate-input" data-validate = "Fecha de nacimiento">
-						<input class="input100" 
-						value= {fechaNacimiento}
-						onChange={(e) => {setFechaNacimiento(e.target.value)}}
-						type="date" 
-						name="fecha_nacimiento" 
-						placeholder="Fecha De Nacimiento"/>
-						<span class="focus-input100"></span>
-						<span class="symbol-input100">
-                            <i class="bx bxs-calendar" aria-hidden="true"></i>
-						</span>
-					</div>
-
-					<div class="wrap-input100 validate-input" data-validate = "">
-						<input class="input100" 
-						value= {domicilio}
-						onChange={(e) => {setDomicilio(e.target.value)}}
-						type="text" 
-						name="Domicilio" 
-						placeholder="Domicilio"/>
-						<span class="focus-input100"></span>
-						<span class="symbol-input100">
-                            <i class="bx bxs-home-heart" aria-hidden="true"></i>
-						</span>
-					</div>
-
-					<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
-						<input class="input100" 
-						value= {email}
-						onChange={(e) => {setEmail(e.target.value)}}
-						type="text" 
-						name="email" 
-						placeholder="Correo Electronico"/>
-						<span class="focus-input100"></span>
-						<span class="symbol-input100">
-							<i class="bx bx-mail-send" aria-hidden="true"></i>
-						</span>
-					</div>
-
-					<div class="wrap-input100 validate-input" data-validate = "Password is required">
-						<input class="input100"
-						value= {password}
-						onChange={(e) => {setPassword(e.target.value)}}
-						 type="password"
-						  name="pass"
-						   placeholder="Contraseña"/>
-						<span class="focus-input100"></span>
-						<span class="symbol-input100">
-							<i class="fa fa-lock" aria-hidden="true"></i>
-						</span>
-					</div>
-					
-					<div class="container-login100-form-btn">
-						<button class="login100-form-btn" onClick={(e) => {RegistrarNuevoUser(e.preventDefault())}}
-						>REGISTRARSE
-						</button>
-					</div>
-
-				</form>
-			</div>
-		</div>
-	</div>
+            </div>	
+		</>
     
     )
 }
