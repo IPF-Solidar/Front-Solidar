@@ -1,5 +1,6 @@
 //import animals from '../../assets/slider-01.jpg'
 import React,{useState,useEffect} from 'react';
+import { Link } from 'react-router-dom';
 //import { Link } from 'react-router-dom';
 import '../assets/styles/css/tarjeta/card.css'
 
@@ -40,7 +41,9 @@ const Home = () => {
     return (
         <div>
 <div class="container 2">
+<br/><br/><br/><br/><br/><br/>
 <div className="row">
+  
   <div class="info" style={{textAlign:"center"}}>
     <span>Ayudemos a todos <i class='fa fa-heart animated infinite pulse'></i> </span>
   </div>
@@ -57,7 +60,7 @@ const Home = () => {
                     {/* <p class="txt2">New York, the largest city in the U.S., is an architectural marvel with plenty of historic monuments, magnificent buildings and countless dazzling skyscrapers.</p> */}
                 </div>
                 <div class="footer2">
-                    <p><a class="waves-effect waves-light btn" href="#">DETALLES</a></p>
+                    <p><Link to= {{pathname:'/detalle/' + item._id}} class="waves-effect waves-light btn" href="#">DETALLES</Link></p>
                     <p class="txt3"><i class="far fa-clock"></i>10 Minutes Ago <span class="comments"><i class="fas fa-comments"></i>{item.autor.nombre} {item.autor.apellido}</span></p>
                 </div>
             </div>

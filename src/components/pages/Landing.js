@@ -21,7 +21,7 @@ const Landing = () => {
                 <div className="row">
                     <div className="col-lg-6">
                         <div className="text-container">
-                            <h1>La SOLIDARIDAD no es un acto de caridad,<span id="js-rotating"> sino una ayuda mutua entre fuerzas que luchan por el mismo objetivo</span></h1>
+                            <h1>En tiempos difíciles,<span id="js-rotating"> la solidaridad puede salvarnos</span></h1>
                             <p className="p-large">Ayudemos a las personas!</p>
                             
                             <Link to="/publicaciones" className="btn-solid-lg page-scroll" href="#your-link"><i className="fab fa-google-play"></i>PUBLICACIONES</Link>
@@ -51,7 +51,7 @@ const Landing = () => {
                 <div className="col-lg-6">
                     <div className="text-container">
                         <h3>SOLIDAR</h3>
-                        <p>En tiempos difíciles, la solidaridad puede salvarnos</p>
+                        <p>No necesitas una razón para ayudar a los demás</p>
                         <a className="btn-solid-reg popup-with-move-anim" href="#details-lightbox-1">CONTACTO</a>
                     </div> 
                 </div> 
@@ -67,9 +67,9 @@ const Landing = () => {
                 <div className="row">
                     <div className="col-lg-6">
                         <div className="text-container">
-                            <h3>En tiempos difíciles, la solidaridad puede salvarnos</h3>
-                            <p>The calendar input function enables the user to setup training, meditation and relaxation sessions with ease. Just open the feature and start setting up your time as you desire</p>
-                            <a className="btn-solid-reg popup-with-move-anim" href="#details-lightbox-2">DONAR</a>
+                            <h3>La SOLIDARIDAD no es un acto de caridad, sino una ayuda mutua entre fuerzas que luchan por el mismo objetivo</h3>
+                            <p></p>
+                            <Link to="/publicaciones" className="btn-solid-reg popup-with-move-anim">DONAR</Link>
                         </div> 
                     </div> 
                     <div className="col-lg-6">

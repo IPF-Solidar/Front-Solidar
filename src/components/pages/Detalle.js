@@ -3,7 +3,7 @@ import React,{useEffect, useState} from 'react';
 
 
 import { useParams } from 'react-router';
-
+import portada from '../assets/styles/images/solidaridad.png'
 
 
 
@@ -35,11 +35,12 @@ const Detalle = () => {
 	}
 
     return (
-        <div>
-             
+        
+        <div className="container">
+             <br/><br/><br/><br/><br/>
       <section class="section swiper-container swiper-slider swiper-classic bg-gray-2" data-loop="true" data-autoplay="4000" data-simulate-touch="false" data-slide-effect="fade">
             <div class="swiper-wrapper">
-                <div class="swiper-slide text-center"><img src= "{Portada}"/>
+                <div class="swiper-slide text-center"><img src= {portada}/>
                     <div class="container">
                         <div class="row justify-content-center">
                             
@@ -50,14 +51,6 @@ const Detalle = () => {
             
       </section>
 
-      <div class="btn-group btn-group-toggle" data-toggle="buttons">
-  <label class="btn btn-secondary active">
-    <input type="radio" name="options" id="option1" autocomplete="off" checked/> Home
-  </label>
-  <label class="btn btn-secondary">
-    <input type="radio" name="options" id="option2" autocomplete="off"/> Comentarios
-  </label>
-</div>
 
       
         <section class="section section-md bg-gray-100">
