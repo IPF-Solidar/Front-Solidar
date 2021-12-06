@@ -98,7 +98,7 @@ const Login = () => {
 			placeholder="Contraseña"
 			
 			/></div>
-            <div class="form-group"><button class="btn btn-primary btn-block">INICIAR SESION</button></div><a href="#" class="forgot">Olvidaste la contraseña?</a>
+            <div class="form-group"><button class="btn btn-primary btn-block">INICIAR SESION</button><br/></div><a href="#" class="forgot">Olvidaste la contraseña?</a>
 			<br/>
 			
 			<p style={{textAlign:"center", color:"red"}}>{errorMessage}</p>

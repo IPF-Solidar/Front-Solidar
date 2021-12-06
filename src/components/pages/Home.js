@@ -1,5 +1,6 @@
 //import animals from '../../assets/slider-01.jpg'
 import React,{useState,useEffect} from 'react';
+import { Link } from 'react-router-dom';
 //import { Link } from 'react-router-dom';
 import '../assets/styles/css/tarjeta/card.css'
 import portada from '../assets/styles/images/Solidar/imgsoli.jpg'

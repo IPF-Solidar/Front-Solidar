@@ -1,6 +1,6 @@
 import React, {useState,useEffect} from 'react'
 import { useHistory} from "react-router-dom"
-
+import { Link } from 'react-router-dom'
 import '../assets/styles/Login/styleRegistro.css'
 
 
@@ -65,10 +65,10 @@ const Register = () => {
 	<div class="container register">
                 <div class="row">
                     <div class="col-md-3 register-left">
-                        <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt=""/>
+                        <img src="https://i.pinimg.com/originals/b5/20/59/b52059655c9921bfac4d9e6c82f80a0f.png" alt=""/>
                         <h3>BIENVENIDO A SOLIDAR</h3>
                         <p>Ya tienes una cuenta en solidar ?</p>
-                        <input type="submit" name="" value="INICAR SESION"/><br/>
+                        <Link to="/login"><input type="submit" name="" value="INICAR SESION"/></Link><br/>
                     </div>
                     <div class="col-md-9 register-right"> 
                         <div class="tab-content" id="myTabContent">
@@ -125,7 +125,7 @@ const Register = () => {
 											class="form-control" 
 											value= {email}
 											onChange={(e) => {setEmail(e.target.value)}}
-											placeholder="Correo Electrnico *"  />
+											placeholder="Correo Electronico *"  />
                                         </div>
 										<div class="form-group">
 											<input 
