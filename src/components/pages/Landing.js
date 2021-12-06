@@ -114,21 +114,21 @@ const Landing = () => {
             <div className="row">
                 <div className="col-md-4">
                     <div className="footer-col">
-                        <h4>About Leno</h4>
-                        <p>We're passionate about creating the best mobile apps for personal development</p>
+                        <h4>¿Quienes somos?</h4>
+                        <p>Queremos brindar a las personas que necesitan ayuda solidaria la oportunidad de contar sus historias</p>
                     </div>
                 </div> 
                 <div className="col-md-4">
                     <div className="footer-col middle">
-                        <h4>Important Links</h4>
+                        <h4>Conoce más de nosotros</h4>
                         <ul className="list-unstyled li-space-lg">
                             <li className="media">
                                 <i className="fas fa-square"></i>
-                                <div className="media-body">Our business partners <a className="turquoise" href="#your-link">startupguide.com</a></div>
+                                <div className="media-body">Click para más información <a className="turquoise" href="#your-link">contacto.com</a></div>
                             </li>
                             <li className="media">
                                 <i className="fas fa-square"></i>
-                                <div className="media-body">Read our <a className="turquoise" href="terms-conditions.html">Terms & Conditions</a>, <a className="turquoise" href="privacy-policy.html">Privacy Policy</a></div>
+                                <div className="media-body">Leer los <a className="turquoise" href="terms-conditions.html">Terminos & Condiciones</a>, <a className="turquoise" href="privacy-policy.html">Política de privacidad</a></div>
                             </li>
                         </ul>
                     </div>
@@ -180,6 +180,7 @@ const Landing = () => {
         </div> 
     </div> 
     </div>  
+
     
     </body>
         </>

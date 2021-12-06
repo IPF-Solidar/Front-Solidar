@@ -8,7 +8,8 @@ import Contact from './components/pages/Contact';
 import Register from './components/pages/Register';
 import Home from  './components/pages/Home'
 import Detalle from './components/pages/Detalle';
-import {useState, useEffect} from 'react';
+/* import {useState, useEffect} from 'react'; */
+import FormPublicar from './components/pages/FormPublicar';
 
 function App() {
 
@@ -38,7 +39,9 @@ function App() {
         <Route exact path="/contact" component={Contact}/>
         <Route exact path="/register" component={Register}/>
         <Route exact path="/publicaciones" component={Home}/>
+        <Route exact path="/formularioP" component={FormPublicar}/>
         <Route exact path="/detalle/:proid" component={Detalle}/>
+
       </Switch>
     )
   }
@@ -52,7 +55,7 @@ function App() {
         <Navbar /* listProf={stateProfesionales ? stateProfesionales : null} *//>
         <Routing />
       </Router>
-  
+     
   </>
   
     )

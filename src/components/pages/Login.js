@@ -75,8 +75,6 @@ const Login = () => {
 
 
     return (
-        
-	<>
 	<body>
     <div class="login-dark">
         <form  onSubmit={handleSubmit}>
@@ -108,8 +106,6 @@ const Login = () => {
 			</form>
     </div>
     </body>
-
-	</>
     
     )
 }

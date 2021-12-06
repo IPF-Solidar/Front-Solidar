@@ -1,127 +1,180 @@
-.container-2{
-    margin-top: 10%;
+
+.site-containerSolidar{
+    margin:2rem auto;
+    max-width: calc(100% - 80px);
+    font-family:sans-serif;
+    font-size: 100%;
+    font-size: 15px;
+    line-height: 1.5;
+    -webkit-font-smoothing: atialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
-.cardcontainer {
-    width: 350px;
-    height: 500px;
-    background-color: white;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 20%;
-    transition: 0.3s
+.article-containerSolidar{
+    display: grid;
+    grid-template-columns:  repeat(auto-fill, minmax(265px, 1fr));
+    gap: 1rem;
 }
 
-.cardcontainer:hover {
-    box-shadow: 0 0 45px gray
-    
+.article-imageSolidar{
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
 }
-
-.photo {
-    height: 300px;
-    width: 100%;
-    margin:auto;
-}
-
-.photo img {
+.article-imageSolidar img {
+    max-width: 100%;
     height: 100%;
-    width: 100%
-    
+    border-radius:  20px 20px 0 0;
     
 }
 
-.txt1 {
+.article-cardSolidar{
+    background: rgb(255, 255, 255);
+    border-radius: 20px;
+    transition: 0.3s;
+    
+
+}
+
+.article-cardSolidar:hover{
+    box-shadow:  0 4px 20px 0 rgba(34, 68, 123, 0.2) ;
+    cursor: pointer;
+    transform: translateY(-2%);
+    border-bottom: solid rgb(3, 168, 67);
+
+}
+
+.article-contentSolidar{
+    padding: 2rem;
+}
+
+.article-contentSolidar .card-categorySolidar{
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+    color: #6b82a7af;
+    margin-bottom: 0px; 
+    margin-top: 1px;
+}
+.article-contentSolidar .card-categorySolidar2{
+    font-size: 0.575rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+    color: #6b82a7af;
+    margin-bottom: 5px; 
+    margin-top: 1px;
+
+}
+
+.article-contentSolidar .card-titleSolidar{
+    margin: 1rem 0;
+    color: #22447b;
+    text-align: center;
+}
+
+.article-contentSolidar .card-excerpt{
+    font-size:  1rem;
+    line-height: 1.5rem;
+    color: #6b82a7;
+    margin: 0;
+    
+}
+.article-contentSolidar a{
+    text-decoration: none;
+    display: inline-block;
+    padding: 10px;
+    color: rgb(4, 167, 167);
+    border: 1px solid rgb(4, 167, 167);
+    border-radius: 4px;
+    transition: all 400ms ease;
     margin: auto;
+    width: 90%;
     text-align: center;
-    font-size: 17px
 }
 
-.content {
-    width: 80%;
-    height: 100px;
-    margin-left: auto;
-    margin-right: auto;
-    position: relative;
-    top: -33px
-}
-
-.photos {
-    width: 90px;
-    height: 30px;
-    background-color: #E74C3C;
+.article-contentSolidar a:hover{
+    background: rgb(4, 167, 167);
     color: white;
-    position: relative;
-    top: -30px;
-    padding-left: 10px;
-    font-size: 20px
 }
 
-.txt4 {
-    font-size: 27px;
-    position: relative;
-    top: 55px;
-    color:rgb(0, 0, 0);
-    text-align: center;
+.article-contentSolidar .hrSolidar{
+    height: -100px;
+    background: #6b82a71c;
+    margin: 5px -2px;
+    border: solid #6b82a700;
 }
 
-.txt5 {
-    position: relative;
-    top: 55px;
-    color: #E74C3C;
-    font-size: 23px;
-    text-align: center;
+.article-contentSolidar .card-progressSolidar{
+    width: 100%;
+    margin-bottom: -10px;  
 }
 
-.footer2 {
-    width: 80%;
-    height: 100px;
-    margin-left: auto;
-    margin-right: auto;
-    background-color: white;
-    position: relative;
-    top: -15px;
-    justify-content: center;
+.article-contentSolidar .card-objetivoActual{
+    color: rgba(24, 24, 24, 0.555);
+ 
+}
+.article-contentSolidar .card-objetivoFinal{
+    color: rgba(24, 24, 24, 0.555);
 }
 
-.btn {
-    position: relative;
-    top: 20px
+.article-contentSolidar .textos{
+    margin-bottom: 60px;
+}
+.article-contentSolidar .textos .derecho{
+    float:left;
 }
 
-#heart {
-    cursor: pointer
+.article-contentSolidar .textos .izquierdo{
+    float:right;
 }
 
-.like {
-    float: right;
-    font-size: 22px;
-    position: relative;
-    top: 20px;
-    color: #333333
+
+
+
+
+
+
+
+
+@media screen and ( min-width: 280px ){
+    .site-containerSolidar{
+        max-width: 1000px;
+    }
+    .article-cardSolidar{
+        display: grid;
+        grid-template-rows: 400px 1fr ;
+    }
 }
 
-.fa-gratipay {
-    margin-right: 10px;
-    transition: 0.5s
+@media screen and ( min-width: 480px ){
+    .site-containerSolidar{
+        max-width: 1000px;
+    }
+    .article-cardSolidar{
+        display: grid;
+        grid-template-rows: 400px 1fr ;
+    }
 }
 
-.fa-gratipay:hover {
-    color: #E74C3C
+@media screen and ( min-width: 768px ){
+    .site-containerSolidar{
+        max-width: 608px;
+    }
+    .article-cardSolidar{
+        display: grid;
+        grid-template-rows: 220px 1fr ;
+    }
 }
 
-.txt3 {
-    color: gray;
-    position: relative;
-    top: 18px;
-    font-size: 14px
+@media screen and ( min-width: 1280px ){
+    .site-containerSolidar{
+        max-width: 1000px;
+    }
+    .article-cardSolidar{
+        display: grid;
+        grid-template-rows: 220px 1fr ;
+    }
 }
 
-.comments {
-    float: right;
-    cursor: pointer
-}
-
-.fa-clock,
-.fa-comments {
-    margin-right: 7px
-}

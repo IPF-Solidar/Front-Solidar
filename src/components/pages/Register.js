@@ -61,8 +61,7 @@ const Register = () => {
 
 
 
-    return (
-        <>
+    return ( 
 	<div class="container register">
                 <div class="row">
                     <div class="col-md-3 register-left">
@@ -71,8 +70,7 @@ const Register = () => {
                         <p>Ya tienes una cuenta en solidar ?</p>
                         <input type="submit" name="" value="INICAR SESION"/><br/>
                     </div>
-                    <div class="col-md-9 register-right">
-                        
+                    <div class="col-md-9 register-right"> 
                         <div class="tab-content" id="myTabContent">
                             <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                                 <h3 class="register-heading" style={{color:"white"}}>REGISTRO!!!</h3>
@@ -144,10 +142,7 @@ const Register = () => {
                         </div>
                     </div>
                 </div>
-
             </div>	
-		</>
-    
     )
 }
 

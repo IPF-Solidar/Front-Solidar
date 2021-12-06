@@ -14,9 +14,9 @@ import 'animate.css';
 
 
 
-const Navbar = (props) => {
+const Navbar = () => {
   
-    const {listProf} = props
+    
 
     const [Login, setLogin] = useState(null);
 
@@ -37,7 +37,7 @@ const Navbar = (props) => {
 {
   return ( 
     <li class="nav-item">
-    <Link class="nav-link page-scroll" onClick={logaut}>Cerrar Sesion</Link>
+    <Link class="nav-link page-scroll animate__animated animate__bounceInDown" onClick={logaut}>Cerrar Sesion</Link>
     </li>
   )
 }
@@ -49,6 +49,7 @@ const renderLoginButton = () => {
         </li>
     )
  }
+
  
  const renderRegisterButton = () => {
     return( 
@@ -57,24 +58,20 @@ const renderLoginButton = () => {
         </li>
  )
  }
- const renderDetallesButton = () => {
-    return( 
-        <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle page-scroll" href="#details" id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">DETALLES</a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="terms-conditions.html"><span class="item-text">TERMINOS Y CONDICIONES</span></a>
-                        <div class="dropdown-items-divide-hr"></div>
-                        <a class="dropdown-item" href="privacy-policy.html"><span class="item-text">PRIVACIDAD Y POLITICA</span></a>
-                    </div>
+
+ const renderPublicar = () => {
+    return(
+        <li class="nav-item">
+            <Link to= "/formularioP" class="nav-link page-scroll animate__animated animate__bounceInDown" href="#features">PUBLICAR</Link>
         </li>
- )
+    )
  }
+ 
 
 return (
-  <>
-  <nav class="navbar navbar-expand-md navbar-dark navbar-custom fixed-top">
+  <nav class="navbar navbar-expand-md navbar-dark navbar-custom">
         
-         <a class="navbar-brand logo-text page-scroll" href="">Solidar</a>
+         <a class="navbar-brand logo-text page-scroll animate__animated animate__lightSpeedInLeft" href="">Solidar</a>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-awesome fas fa-bars"></span>
@@ -89,7 +86,7 @@ return (
                 </li>
                 {
                     Login
-                    ?""
+                    ?renderPublicar()
                     :renderLoginButton()
                 }
                   {
@@ -115,7 +112,6 @@ return (
             </span>
         </div>
     </nav>
-  </>
     )
 }
 

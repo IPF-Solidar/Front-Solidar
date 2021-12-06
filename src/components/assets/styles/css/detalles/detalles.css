@@ -1,0 +1,193 @@
+
+@import url("https://fonts.googleapis.com/css?family=Roboto:900");
+
+
+
+.contenidoDetalles{
+    cursor: default;
+  
+}
+/* 
+.container-solidar{
+    background: white;
+}
+.container-solidar .descripcion-detalles{
+    background: white;
+}
+.container-solidar .descripcion-detalles{
+    background: white;
+} */
+
+
+
+.contenidoDetalles .portada-solidar-detalles img{
+object-fit:cover;
+  width: 100%;
+  height: 500px;
+  
+}
+
+.contenidoDetalles .nav-detalles{
+    background: rgb(46, 46, 46);
+    height: 50px;
+    width: 100%;
+    margin-top: -16px;
+}
+.contenidoDetalles .nav-detalles a{
+    text-decoration: none;
+    display: inline-block;
+    padding: 10px;
+    color: rgb(4, 167, 167);
+    transition: all 400ms ease;
+    margin: auto;
+    text-align: center;
+    align-items: center;
+    font-family: "Roboto", sans-serif;
+    font-weight: 900;
+}
+.contenidoDetalles .nav-detalles a:hover{
+    text-decoration: none;
+    display: inline-block;
+    padding: 10px;
+    color: rgb(252, 252, 252);
+    border-radius: 4px;
+    background: rgba(3, 130, 180, 0.658);
+    transition: all 400ms ease;
+    margin: auto;
+    text-align: center;
+}
+.descripcion-detalles{
+    float:left;
+    width: 70%;
+    
+}
+.titulo-detalles h2{
+    color: rgb(255, 255, 255);
+}
+.descripcion-detalles p{
+    color: rgb(255, 255, 255);
+     font-weight: 600;
+}
+
+.contenidoDetalles hr {
+    color: rgb(255, 255, 255);
+    
+}
+.card-detalles-donacion{
+    float:right;
+    background-image: url(../../images/Solidar/fondo.jpg);
+    border-radius: 5px;
+    transition: 0.3s;
+    height: 120px;
+    width: 20%;
+    display: grid;
+    gap: 2rem;
+    
+}
+.card-detalles-donacion h5{
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 900;
+    color: rgb(255, 255, 255);
+}
+
+
+
+
+
+
+
+
+/* ----------------------------------- */
+/* only animate if the device supports hover */
+@media (hover: hover) {
+    #creditcard {
+      /*  set start position */
+      transform: translateY(110px);
+      transition: transform 0.1s ease-in-out;
+      /*  set transition for mouse enter & exit */
+    }
+  
+    #money {
+      /*  set start position */
+      transform: translateY(180px);
+      transition: transform 0.1s ease-in-out;
+      /*  set transition for mouse enter & exit */
+    }
+  
+    button:hover #creditcard {
+      transform: translateY(0px);
+      transition: transform 0.2s ease-in-out;
+      /*  overide transition for mouse enter */
+    }
+  
+    button:hover #money {
+      transform: translateY(0px);
+      transition: transform 0.3s ease-in-out;
+      /*  overide transition for mouse enter */
+    }
+  }
+  
+  @keyframes bounce {
+    0% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-0.25rem);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+  
+  .button:hover .button__text span {
+    transform: translateY(-0.25rem);
+    transition: transform .2s ease-in-out;
+  }
+  
+  /* styling */
+  
+  @import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400&display=swap");
+  
+  
+  
+  .card-detalles-donacion .button {
+    border: none;
+    outline: none;
+    background-color: purple;
+    padding: 1rem 90px 1rem 2rem;
+    position: relative;
+    border-radius: 8px;
+    letter-spacing: 0.7px;
+    background-color: #6b036b;
+    color: #fff;
+    font-size: 21px;
+    font-family: "Lato", sans-serif;
+    cursor: pointer;
+    box-shadow: rgba(0, 9, 61, 0.2) 0px 4px 8px 0px;
+    font-weight: 900;
+  }
+
+  .card-detalles-donacion .button:hover {
+    color: rgb(0, 219, 73);
+    
+  }
+  
+  .card-detalles-donacion .button:active {
+    transform: translateY(1px);
+  }
+  
+  .card-detalles-donacion .button__svg {
+    position: absolute;
+    overflow: visible;
+    bottom: 6px;
+    right: 0.2rem;
+    height: 140%;
+  }
+
+
+  
+
+
+
+  
