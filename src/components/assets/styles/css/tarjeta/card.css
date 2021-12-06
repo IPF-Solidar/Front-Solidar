@@ -32,7 +32,7 @@
     background: rgb(255, 255, 255);
     border-radius: 20px;
     transition: 0.3s;
-    
+    border-bottom: solid rgba(80, 102, 88, 0);
 
 }
 
@@ -46,6 +46,7 @@
 
 .article-contentSolidar{
     padding: 2rem;
+    
 }
 
 .article-contentSolidar .card-categorySolidar{
@@ -56,6 +57,7 @@
     color: #6b82a7af;
     margin-bottom: 0px; 
     margin-top: 1px;
+    
 }
 .article-contentSolidar .card-categorySolidar2{
     font-size: 0.575rem;
@@ -79,7 +81,7 @@
     line-height: 1.5rem;
     color: #6b82a7;
     margin: 0;
-    
+    text-align: justify;
 }
 .article-contentSolidar a{
     text-decoration: none;
@@ -90,7 +92,7 @@
     border-radius: 4px;
     transition: all 400ms ease;
     margin: auto;
-    width: 90%;
+    width: 100%;
     text-align: center;
 }
 
@@ -109,6 +111,14 @@
 .article-contentSolidar .card-progressSolidar{
     width: 100%;
     margin-bottom: -10px;  
+}
+
+.h5-finalizado{
+    position: relative;
+    top: 10px;
+    margin-bottom: 60px; 
+    text-align: center;
+    color: rgb(10, 233, 10);
 }
 
 .article-contentSolidar .card-objetivoActual{

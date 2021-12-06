@@ -1,12 +1,9 @@
 //import animals from '../../assets/slider-01.jpg'
 import React,{useState,useEffect} from 'react';
-import { Link } from 'react-router-dom';
+/* import { Link } from 'react-router-dom'; */
 //import { Link } from 'react-router-dom';
 import '../assets/styles/css/tarjeta/card.css'
-import portada from '../assets/styles/images/Solidar/imgsoli.jpg'
-import portada2 from '../assets/styles/images/Solidar/soli2.jpg'
-import portada3 from '../assets/styles/images/Solidar/soli3.jpg'
-import portada4 from '../assets/styles/images/Solidar/casa.jpg'
+
 import { Link } from 'react-router-dom';
 
 
@@ -35,8 +32,7 @@ const Home = () => {
         
   
 
-   
-    
+  
   /*   let fecha = new Date(listatadoCompleto.fechaInicio)
     let fechaConvertida = fecha.toLocaleDateString();
  */
@@ -49,6 +45,9 @@ const Home = () => {
       <div class="article-containerSolidar">
         { 
       listatadoCompleto.length > 0 ? listatadoCompleto.map(item => { 
+
+        const progress = (item.dineroActual/item.objetivo)*100;
+        console.log(progress)
                     return(
           <article class="article-cardSolidar  animate__animated animate__bounceInLeft">
               <figure class="article-imageSolidar">
@@ -59,17 +58,28 @@ const Home = () => {
                   <h5  class="card-categorySolidar2">De: <b>{item.departamento}</b></h5>
                   <hr class="hrSolidar"/>
                   <h3 class="card-titleSolidar">{item.titulo}</h3>
-                  <p class="card-excerpt">{item.descripcion}</p>
+                  <p class="card-excerpt">{item.descripcion.substring(0,125)}...</p>
                   <hr class="hrSolidar"/>
-                  <progress class="card-progressSolidar"id="file" max="100" value="65"> 70% </progress>
-                    <div class="textos">
+                  {
+                      progress < 100 ? <progress class="card-progressSolidar"id="file" max="100" value={progress}> 70% </progress>
+                      : 
+                        <div>
+                          <h5 class ="h5-finalizado">Finalizado</h5>
+                        </div>
+                  }
+                    {
+                        progress < 100 ?
+                        <div class="textos">
                           <div class="derecho">
-                            <p class="card-objetivoActual">$5000</p>
+                            <p class="card-objetivoActual">${item.dineroActual}</p>
                           </div>
                           <div class="izquierdo">
                               <p class="card-objetivoFinal">${item.objetivo}</p>
                           </div>        
                     </div>
+                    : ""
+                    }
+                    
                   <Link to ={{pathname:'/detalle/' + item._id}} href="#">Leer Más</Link> 
               </div>
           </article>   

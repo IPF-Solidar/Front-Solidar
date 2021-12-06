@@ -54,28 +54,7 @@ const Detalle = () => {
                             <hr/>
                             <div class="descripcion-detalles">
                                 <p>
-                                    Gracias a los empleados de Clifford Chance más familias en situación de vulnerabilidad ponen su mesa esta navidad
-                                    Situación Social
-                                    
-                                    La crisis social generada por el Covid-19 sigue pegando fuerte y el 27% de los españoles se encuentran en exclusión social (Eurostat). A esto se le suma una subida sin precedentes del IPC dejando los precios un 5.5% más altos que el año pasado. 
-                                    
-                                    En España, todos lo sabemos, la Navidad es una época de celebración y reencuentros. Aún así, muchas familias siguen con las mismas preocupaciones y precariedad en sus condiciones de vivienda y económicas. Muchas familias no podrán servir un pavo o tomar un vino, ni si quiera podrán tomar alimentos frescos. 
-                                    
-                                    A + familias: La Asociación
-                                    
-                                    En A+familias llevamos 2 años ayudando a familias en situación de vulnerabilidad. Apostamos por la cobertura integral de sus necesidades pero con un objetivo claro, que es: la dignidad y autonomía de estas familias. 
-                                    
-                                    Hemos progresado hacia la dignidad desde la tipología de ayuda entregada: 
-                                    Nos iniciamos con la entrega de cestas de la compra. Avanzamos con la entrega de vales/cupones de los supermercados DIA y después tarjetas monedero de los supermercados Carrefour. Actualmente se compaginan las tarjetas virtuales de Carrefour con las tarjetas de débito Visa Social la Caixa con el fin de hacer más digno y sostenible este sistema de ayudas. Las familias que acceden a esta ayuda utilizan la tarjeta para comprar productos de primera necesidad e higiene. El gran logro obtenido, ha sido evitar que estas personas sean parte de las colas del hambre y que puedan ir a la compra y escoger sus alimentos según necesidades, intolerancias .. 
-                                    
-                                    Durante el año 2021 hemos: 
-                                    
-                                    Entregado 150.000€ en tarjetas; Una media de 100 familias y 12.000€ entregados al mes
-                                    Firmado 10 acuerdos con entidades sociales de ayuda a familias 
-                                    Creado 8 vínculos institucionales: Carrefour, La Caixa, Universidad de Comillas, Clifford Chance, Allen & Overy, IE University, Citi Bank, Proyecto Incorpora La Caixa
-                                    Más información
-                                    
-                                    Esta es la ayuda económica mensual según el número de miembros (si hay hijos menores de 3 años se dan 10€ más)
+                                   {stateProfesionales.descripcion}
                                 </p>
                             </div>
                                 <div class="card-detalles-donacion">

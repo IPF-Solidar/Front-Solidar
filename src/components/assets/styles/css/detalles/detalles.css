@@ -59,7 +59,7 @@ object-fit:cover;
 .descripcion-detalles{
     float:left;
     width: 70%;
-    
+    text-align: justify;
 }
 .titulo-detalles h2{
     color: rgb(255, 255, 255);
@@ -75,7 +75,7 @@ object-fit:cover;
 }
 .card-detalles-donacion{
     float:right;
-    background-image: url(../../images/Solidar/fondo.jpg);
+    background-color: rgb(4, 214, 32);
     border-radius: 5px;
     transition: 0.3s;
     height: 120px;
@@ -154,12 +154,11 @@ object-fit:cover;
   .card-detalles-donacion .button {
     border: none;
     outline: none;
-    background-color: purple;
     padding: 1rem 90px 1rem 2rem;
     position: relative;
     border-radius: 8px;
     letter-spacing: 0.7px;
-    background-color: #6b036b;
+    background-color: #04b448;
     color: #fff;
     font-size: 21px;
     font-family: "Lato", sans-serif;
@@ -169,7 +168,7 @@ object-fit:cover;
   }
 
   .card-detalles-donacion .button:hover {
-    color: rgb(0, 219, 73);
+    color: rgb(0, 0, 0);
     
   }
   

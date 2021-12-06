@@ -3,6 +3,7 @@ import React, {useState,useEffect,useRef} from 'react'
 import '../assets/styles/css/formPublicar/formulariop.css'
 import { useHistory } from 'react-router'
 import logo from '../assets/styles/images/Solidar/escudo.png'
+import axios from 'axios'
 
 
 const FormPublicar = () => {
@@ -19,22 +20,12 @@ const FormPublicar = () => {
         )
         
     } */
-    const renderImagen = () => {
-        return( 
-            <>
-            </>
-        )
-        
-    }
+  
 
   
     
     const inputFileRef= useRef()
-/* 
-    const handleSubmit = (e) => {
-      e.preventDefault();
-      console.log(inputFileRef.current.files[0])
-    } */
+
 
 
 
@@ -42,56 +33,15 @@ const FormPublicar = () => {
 
 	const [titulo, setTitulo] = useState('');
 	const [descripcion, setDescripcion] = useState('');
-  const [imagen, setImagen] = useState('');
   const [departamento, setDepartamento] = useState('');
 	const [objetivo, setObjetivo] = useState('');
 	const [urlYoutube, setUrlYoutube] = useState(null);
 	const [fechaFinal, setFechaFinal] = useState('');
 
 
-/* 	const inputFileRef= useRef();
-useEffect(() =>{
-  console.log(inputFileRef)
-},[imagen]) */
+
 
 	const [registrado, setRegistrado] = useState(null)
-
-
-	const handleSubmit = async (e) => {
-    e.preventDefault();
-    const portad = inputFileRef.current.files[0].name
-    const formData = new FormData()
-    formData.append('image', portad)
-    
- 
-
-    console.log(portad)
-		let myHeaders = new Headers();
-
-		myHeaders.append("Content-Type", "application/json")
-
-		const raw = JSON.stringify({
-			titulo: titulo,
-      descripcion: descripcion,
-      departamento:departamento,
-      image: formData,
-      objetivo: objetivo,
-      urlYoutube: urlYoutube,
-      fechaFinal: fechaFinal
-		})
-
-		const options = {
-			method: 'POST',
-			headers: myHeaders,
-			body: raw,
-			redirect: 'follow'
-		}
-
-		const postData = await fetch("http://localhost:5000/api/create-publicacion", options)
-		const res = postData.json()
-		console.log(res)
-		setRegistrado(true)
-	}
 
 	useEffect(() => {
 		if(registrado){
@@ -99,7 +49,28 @@ useEffect(() =>{
 		}
 	}, [registrado])
 
+  const url = "http://localhost:5000/api/create-publicacion";
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const imagen = inputFileRef.current.files[0]
+
+    const formData = new FormData();
+    formData.append('titulo', titulo)
+    formData.append('descripcion', descripcion)
+    formData.append('departamento', departamento)
+    formData.append('image', imagen)
+    formData.append('objetivo', objetivo)
+    formData.append('urlYoutube', urlYoutube)
+    formData.append('fechaFinal', fechaFinal)
+
+    await axios.post(url, formData, {
+      headers:{
+        'Content-Type': 'multipart/form-data'
+      }
+    })
+    setRegistrado(true);
+  }
 
 
     return (
