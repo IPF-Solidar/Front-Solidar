@@ -7,26 +7,38 @@ import '../assets/styles/css/fontawesome-all.css';
 import '../assets/styles/css/swiper.css';
 import '../assets/styles/css/magnific-popup.css';
 import '../assets/styles/css/styles.css'; 
-
-import logo from '../assets/styles/images/logo.svg'
-
 import 'animate.css';
-
+import { Toaster,toast } from 'react-hot-toast'
 
 
 const Navbar = () => {
-  
-    
-
+    const mostrarMensaje = () =>{
+		toast('Bienvenido A Solidar!!!',
+				{
+					icon: '👍',
+                    position:"bottom-right",
+                    reverseOrder:'false',
+					style: {
+					borderRadius: '10px',
+					background: '#333',
+					color: '#04C3C0',
+					},
+				}
+				);
+	  }
     const [Login, setLogin] = useState(null);
-
+    
   useEffect(() => {
     const usuarioT = localStorage.getItem('Solidar-Usuario')
     if (usuarioT){
 			const user = JSON.parse(usuarioT)
 			setLogin(user)
+            mostrarMensaje()
+           
 		}
 	}, [])
+
+ 
 
   const logaut = () => {
 		window.localStorage.removeItem('Solidar-Usuario')
@@ -37,7 +49,7 @@ const Navbar = () => {
 {
   return ( 
     <li class="nav-item">
-    <Link class="nav-link page-scroll animate__animated animate__bounceInDown" onClick={logaut}>Cerrar Sesion</Link>
+    <Link class="nav-link page-scroll animate__animated animate__bounceInDown" onClick={logaut}>CERRAR SESION</Link>
     </li>
   )
 }
@@ -66,11 +78,25 @@ const renderLoginButton = () => {
         </li>
     )
  }
- 
 
+
+ const style2 = {
+    width: '30px',
+    height: '30px',
+    verticalAlign: 'middle',
+    marginRight: '2px',
+    borderRadius: '15px',
+    position: 'relative',
+    left:'10px'
+       
+ }
+
+
+
+ 
 return (
   <nav class="navbar navbar-expand-md navbar-dark navbar-custom">
-        
+        <Toaster/>
          <a class="navbar-brand logo-text page-scroll animate__animated animate__lightSpeedInLeft" href="">Solidar</a>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
@@ -95,21 +121,16 @@ return (
                     :renderRegisterButton()
                   }
 
+                {
+                    Login ? <li class="nav-item d-flex align-items-center ml-lg-3">
+                    <Link to = '/'><img alt="Image" src={Login.perfil} style={style2} /></Link>
+                    <Link to = '/' class='nav-link page-scroll'>{Login.nombre} {Login.apellido}</Link>
+                </li>
+                    :""
+                }
+
             </ul>
-            <span class="nav-item social-icons">
-                <span class="fa-stack">
-                    <a href="#your-link">
-                        <i class="fas fa-circle fa-stack-2x"></i>
-                        <i class="fab fa-facebook-f fa-stack-1x"></i>
-                    </a>
-                </span>
-                <span class="fa-stack">
-                    <a href="#your-link">
-                        <i class="fas fa-circle fa-stack-2x"></i>
-                        <i class="fab fa-twitter fa-stack-1x"></i>
-                    </a>
-                </span>
-            </span>
+            
         </div>
     </nav>
     )

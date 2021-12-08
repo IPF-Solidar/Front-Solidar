@@ -10,10 +10,10 @@ import video from "../assets/styles/images/video-frame.jpg";
 
 const Landing = () => {
 
-
     return (
         
         <>
+        
         <body>
         <header id="header" className="header">
         <div className="header-content">

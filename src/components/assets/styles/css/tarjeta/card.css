@@ -76,7 +76,7 @@
     text-align: center;
 }
 
-.article-contentSolidar .card-excerpt{
+.article-contentSolidar .card-excerpt p{
     font-size:  1rem;
     line-height: 1.5rem;
     color: #6b82a7;

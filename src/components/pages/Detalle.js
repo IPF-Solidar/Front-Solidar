@@ -1,12 +1,9 @@
 //import animals from '../../assets/slider-01.jpg'
 import React,{useEffect, useState} from 'react';
 import '../assets/styles/css/detalles/detalles.css'
+import parse from 'html-react-parser';
 
 import { useParams } from 'react-router';
-
-import portadaDetalle from "../assets/styles/images/Solidar/soli2.jpg";
-
-
 
 
 const Detalle = () => {
@@ -33,18 +30,26 @@ const Detalle = () => {
 	if(!stateProfesionales){
 		return null;
 	}
-
+    const descr = parse(stateProfesionales.descripcion)
     return (
-    
-        <div class="contenidoDetalles">
-            <article>
-                <figure class="portada-solidar-detalles">
+        <>
+         <div class="contenidoDetalles">
+        <figure class="portada-solidar-detalles">
                         <img src={stateProfesionales.imgUrl} alt="Portada"/>
                 </figure>
-                    <div class="nav-detalles">
-                        <a href="">PUBLICACION</a>
-                        <a href="">COMENTARIOS</a>
-                    </div>
+        <div class="tabset">
+                <input type="radio" name="tabset" id="tab1" aria-controls="marzen" checked/>
+                <label for="tab1">PUBLICACION</label>
+
+                <input type="radio" name="tabset" id="tab2" aria-controls="rauchbier" /> 
+                <label for="tab2">COMENTARIOS</label>
+                
+                <div class="tab-panels">
+                    <section id="marzen" class="tab-panel">
+                   
+            <article>
+                
+                    
                     <br/>
                     <div class="container">
                         <div class="container-solidar">
@@ -54,7 +59,7 @@ const Detalle = () => {
                             <hr/>
                             <div class="descripcion-detalles">
                                 <p>
-                                   {stateProfesionales.descripcion}
+                                   {descr}
                                 </p>
                             </div>
                                 <div class="card-detalles-donacion">
@@ -96,8 +101,66 @@ const Detalle = () => {
                             </div>  
                         </div>
             </article>
-        </div>
+      
+                </section>
+                    <section id="rauchbier" class="tab-panel">
+                    <section class="content-item" id="comments">
+                        <div class="container">   
+                            <div class="row">
+                                <div class="col-sm-8">   
+                                    <form>
+                                        <h3 class="pull-left">Nuevo Comentario</h3>
+                                        
+                                        <fieldset>
+                                            <div class="row">
+                                                <div class="form-group col-xs-12 col-sm-9 col-lg-10">
+                                                    <textarea class="form-control" id="message" placeholder="Escribir comentario..." required=""></textarea>
+                                                </div>
+                                            </div>  
+                                            <button type="submit" class="btn btn-success pull-right">Enviar</button>	
+                                        </fieldset>
+                                       
+                                    </form>
+                
+                                            <h3 class="coment-h3">Comentarios</h3>
+                                            
+                                        
+                                            <div class="media">
+                                                <a class="pull-left" href="#"><img class="media-object" src="https://bootdey.com/img/Content/avatar/avatar1.png" alt=""/></a>
+                                                <div class="media-body">
+                                                    <h4 class="media-heading">John Doe</h4>
+                                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                                    <ul class="list-unstyled list-inline media-detail pull-left">
+                                                        <li><i class="fa fa-calendar"></i>27/02/2014</li>
+                                                    
+                                                    </ul>
+                                                    
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="media">
+                                                <a class="pull-left" href="#"><img class="media-object" src="https://bootdey.com/img/Content/avatar/avatar2.png" alt=""/></a>
+                                                <div class="media-body">
+                                                    <h4 class="media-heading">John Doe</h4>
+                                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                                    <ul class="list-unstyled list-inline media-detail pull-left">
+                                                        <li><i class="fa fa-calendar"></i>27/02/2014</li>
+                                                    </ul>  
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                    </section>
+                    
+                </div>
+                
+                </div>
 
+           
+                </div>
+        </>
     )
 }
 

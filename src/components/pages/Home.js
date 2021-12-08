@@ -3,9 +3,9 @@ import React,{useState,useEffect} from 'react';
 /* import { Link } from 'react-router-dom'; */
 //import { Link } from 'react-router-dom';
 import '../assets/styles/css/tarjeta/card.css'
-
+import { Toaster } from 'react-hot-toast'
 import { Link } from 'react-router-dom';
-
+import parse from 'html-react-parser';
 
 const Home = () => {
 
@@ -18,6 +18,7 @@ const Home = () => {
           const res = await peticion.json()
           //console.log(res + 'xd')
           setListadoCompleto(res)
+         
       } catch (error) {console.log(error)}
   }
 
@@ -30,35 +31,36 @@ const Home = () => {
 		return null;
 	}
         
-  
+
 
   
   /*   let fecha = new Date(listatadoCompleto.fechaInicio)
     let fechaConvertida = fecha.toLocaleDateString();
  */
     
-
     
     return (
       <div> 
+        <Toaster/>
       <div class="site-containerSolidar">
       <div class="article-containerSolidar">
         { 
       listatadoCompleto.length > 0 ? listatadoCompleto.map(item => { 
-
+        const descr = parse(item.descripcion.substring(0,134))
         const progress = (item.dineroActual/item.objetivo)*100;
-        console.log(progress)
+        
                     return(
           <article class="article-cardSolidar  animate__animated animate__bounceInLeft">
               <figure class="article-imageSolidar">
                   <img src={item.imgUrl} alt="Portada"/>
               </figure>
               <div class="article-contentSolidar">
-                  <h5  class="card-categorySolidar">Por: <b>Brito Enzo</b></h5>
+                  <h5  class="card-categorySolidar">Por: <b>{item.autor.nombre} {item.autor.apellido}</b></h5>
                   <h5  class="card-categorySolidar2">De: <b>{item.departamento}</b></h5>
                   <hr class="hrSolidar"/>
                   <h3 class="card-titleSolidar">{item.titulo}</h3>
-                  <p class="card-excerpt">{item.descripcion.substring(0,125)}...</p>
+                  {/* <p class="card-excerpt">{item.descripcion.substring(0,125)}...</p> */}
+                  <p class="card-excerpt">{descr}</p>
                   <hr class="hrSolidar"/>
                   {
                       progress < 100 ? <progress class="card-progressSolidar"id="file" max="100" value={progress}> 70% </progress>

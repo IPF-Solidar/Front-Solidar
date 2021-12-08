@@ -6,17 +6,10 @@ import { Link } from 'react-router-dom'
 import loginServicios from '../assets/DB/login'
 import '../assets/styles/Login/styleLogin.css'
 
-//import { useEffect, useState } from 'react'
-
-
-
-
-
-
-
-
 
 const Login = () => {
+
+	
 
 	const[errorMessage, setErrorMessage] = useState (null)
 
@@ -62,7 +55,7 @@ const Login = () => {
 			setemail('');
 			setPassword('');
 			window.location.href="/"
-			
+		
 		}catch(e){
 			setErrorMessage('Usuario o Contraseña no existe')
 			setTimeout(() => {
@@ -76,6 +69,7 @@ const Login = () => {
 
     return (
 	<body>
+		
     <div class="login-dark">
         <form  onSubmit={handleSubmit}>
             <h2 class="sr-only">FORMULARIO</h2>

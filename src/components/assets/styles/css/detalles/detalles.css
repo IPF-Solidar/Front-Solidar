@@ -5,7 +5,7 @@
 
 .contenidoDetalles{
     cursor: default;
-  
+
 }
 /* 
 .container-solidar{
@@ -64,10 +64,7 @@ object-fit:cover;
 .titulo-detalles h2{
     color: rgb(255, 255, 255);
 }
-.descripcion-detalles p{
-    color: rgb(255, 255, 255);
-     font-weight: 600;
-}
+
 
 .contenidoDetalles hr {
     color: rgb(255, 255, 255);
@@ -183,6 +180,143 @@ object-fit:cover;
     right: 0.2rem;
     height: 140%;
   }
+
+
+  /* *********************************************** */
+
+
+  /*
+ CSS for the main interaction
+*/
+.tabset > input[type="radio"] {
+  position: absolute;
+
+}
+
+.tabset .tab-panel {
+  display: none;
+}
+
+.tabset > input:first-child:checked ~ .tab-panels > .tab-panel:first-child,
+.tabset > input:nth-child(3):checked ~ .tab-panels > .tab-panel:nth-child(2),
+.tabset > input:nth-child(5):checked ~ .tab-panels > .tab-panel:nth-child(3),
+.tabset > input:nth-child(7):checked ~ .tab-panels > .tab-panel:nth-child(4),
+.tabset > input:nth-child(9):checked ~ .tab-panels > .tab-panel:nth-child(5),
+.tabset > input:nth-child(11):checked ~ .tab-panels > .tab-panel:nth-child(6) {
+  display: block;
+}
+
+
+
+.tabset > label {
+  position: relative;
+  display: inline-block;
+  padding: 15px 15px 25px;
+  border: 1px solid transparent;
+  border-bottom: 0;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.tabset > label::after {
+  content: "";
+  position: absolute;
+  left: 15px;
+  bottom: 10px;
+  width: 22px;
+  height: 4px;
+  background: #8d8d8d;
+  
+}
+.tabset > label:hover {
+  color: aqua;
+}
+
+.tab-panel {
+  padding: 30px 10px;
+  border-top: 1px solid #ccc;
+}
+
+/*
+ Demo purposes only
+*/
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+#comments .media .media-object{
+	max-width:100px;
+}
+
+#comments .media-detail {
+	margin:0;
+}
+
+#comments .media-detail li {
+	color:#AAAAAA;
+	font-size:12px;
+	padding-right: 10px;
+	font-weight:600;
+}
+
+#comments .media-detail a:hover {
+	text-decoration:underline;
+}
+
+#comments .media-detail li:last-child {
+	padding-right:0;
+}
+
+#comments .media-detail li i {
+	color:#666666;
+	font-size:15px;
+	margin-right:10px;
+}
+
+#comments .media .media-heading {
+	margin:0 0 10px;
+}
+
+
+
+#comments .media p {
+	margin-bottom:15px;
+	text-align:justify;
+}
+
+#comments {
+  box-shadow: 0 -1px 6px 1px rgba(0,0,0,0.1);
+
+}
+
+#comments form {
+margin-bottom:30px;
+}
+
+#comments .btn {
+margin-top:7px;
+}
+
+#comments form fieldset {
+clear:both;
+}
+
+#comments form textarea {
+height:100px;
+}
+
+#comments .media {
+border-top:1px dashed #DDDDDD;
+padding:20px 0;
+margin:0;
+}
+
+#comments .media > .pull-left {
+  margin-right:20px;
+}
+
+
 
 
   

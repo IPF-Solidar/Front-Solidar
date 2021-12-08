@@ -1,26 +1,15 @@
-import { render } from '@testing-library/react'
+
 import React, {useState,useEffect,useRef} from 'react'
 import '../assets/styles/css/formPublicar/formulariop.css'
 import { useHistory } from 'react-router'
-import logo from '../assets/styles/images/Solidar/escudo.png'
 import axios from 'axios'
+import logo from '../assets/styles/images/Solidar/escudo.png'
+import {CKEditor} from '@ckeditor/ckeditor5-react'
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
+import { Toaster,toast } from 'react-hot-toast'
 
 const FormPublicar = () => {
-
-
-    /* const renderMiniatura = () => {
-        return( 
-            <div class="row">
-            <div class="custom2-input-file col-md-6 col-sm-6 col-xs-6">
-            <input type="file" id="fichero-tarifas" class="input-file" value=""/>
-            Subir Miniatura Del Video
-            </div>
-        </div>
-        )
-        
-    } */
-  
 
   
     
@@ -32,12 +21,16 @@ const FormPublicar = () => {
     const history= useHistory()
 
 	const [titulo, setTitulo] = useState('');
-	const [descripcion, setDescripcion] = useState('');
+/* 	const [descripcion, setDescripcion] = useState(''); */
   const [departamento, setDepartamento] = useState('');
 	const [objetivo, setObjetivo] = useState('');
 	const [urlYoutube, setUrlYoutube] = useState(null);
 	const [fechaFinal, setFechaFinal] = useState('');
+  const [descripcionEditor, setDescripcionEditor] = useState('');
 
+  const handleChange = (e, editor) =>{
+    setDescripcionEditor(editor.getData());
+  }
 
 
 
@@ -51,13 +44,18 @@ const FormPublicar = () => {
 
   const url = "http://localhost:5000/api/create-publicacion";
 
+  const Datos = localStorage.getItem('Solidar-Usuario');
+  const parse = JSON.parse(Datos);
+  const token = parse.token;
+/*   console.log(token) */
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const imagen = inputFileRef.current.files[0]
 
     const formData = new FormData();
     formData.append('titulo', titulo)
-    formData.append('descripcion', descripcion)
+    formData.append('descripcion', descripcionEditor)
     formData.append('departamento', departamento)
     formData.append('image', imagen)
     formData.append('objetivo', objetivo)
@@ -66,16 +64,30 @@ const FormPublicar = () => {
 
     await axios.post(url, formData, {
       headers:{
+        'x-token': token,
         'Content-Type': 'multipart/form-data'
       }
     })
     setRegistrado(true);
+    mensajePrueba();
   }
 
 
+
+
+
+  const mensajePrueba = () =>{
+    toast.success('Se Guardo Correctamente',{
+      position:"top-right",
+      reverseOrder:"false"
+    })
+  }
+
+  
+
     return (
         <div class="content-form-solidar">
-    
+           
         <div class="container">
     
           
@@ -86,7 +98,7 @@ const FormPublicar = () => {
                 <div class="col-lg-7 mb-5 mb-lg-0">
     
                   <h2 class="h2 mb-5 animate__animated animate__fadeInTopLeft">FORMULARIO</h2>
-    
+                   
                   <form class="border-right pr-5 mb-5" method="post" id="contactForm" name="contactForm" onSubmit={handleSubmit}>
                     <div class="row">
                       <div class="col-md-6 form-group">
@@ -108,12 +120,7 @@ const FormPublicar = () => {
                           </select>
                       </div>
                     </div>
-                    <br/>
-                    <div class="row">
-                      <div class="col-md-12 form-group">
-                        <textarea class="form-control" name="message" id="message" cols="30" rows="7" placeholder="Ingresar una descripcion " onChange={({target}) => setDescripcion(target.value)}></textarea>
-                      </div>
-                    </div>
+                   
                     <br/>
                     <div class="row">
                         <div class="col-md-12 form-group">
@@ -134,11 +141,13 @@ const FormPublicar = () => {
                         </div>
                       </div>
                       <br/>
-                          {/*   {
-                                video ? renderMiniatura()
-                                : ""
-                            }
-                        <br/> */}
+                      <div>
+                      <div >
+                      <label>Ingresar la descripcion de su proyecto</label>
+                        {/* <textarea class="form-control" name="message" id="message" cols="30" rows="7" placeholder="Ingresar una descripcion " onChange={({target}) => setDescripcion(target.value)}></textarea> */}
+                        <CKEditor editor={ClassicEditor} onChange={(e,editor) =>{ handleChange(e,editor)}}/>
+                      </div>
+                    </div>
                     <div class="row-button-solidar">
                       <div class="col-md-12">
                         <input type="submit" value="PUBLICAR"  class="btn btn-success rounded-0 py-2 px-4"/>
@@ -154,22 +163,19 @@ const FormPublicar = () => {
                         <img class="logo-form" src={logo}/>
                     </figure>
                   <h3 class="h3 mb-4">SUBIR IMAGEN</h3>
-                  <p>Debes agregar una buena portada a tu publicacion</p>
+                  <p class="p-detalle">Debes agregar una buena portada a tu publicacion</p>
                   <div class="row">
                     <div class="custom-input-file col-md-6 col-sm-6 col-xs-6">
                       <input type="file" ref={inputFileRef} />
                       Cargar Portada...
                     </div>
-                  </div>
-                  {/* {
-                      imagen ? <p class="animate__animated animate__heartBeat">Subiendo foto...</p>
-                      :renderImagen()
-                  } */}
+                  </div> 
                 </div>
               </div>
             </div>  
             </div>
-          </div>
+          </div> 
+          <Toaster/>
       </div>
     )
 }
