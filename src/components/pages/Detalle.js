@@ -10,8 +10,13 @@ const Detalle = () => {
         
     const {proid} = useParams();
 	//console.log(proid + " xdxdxd");
+    const [montoD, setDonacion] = useState(null);
+	const [stateProfesionales, setStateProfesionales] = useState(null);
 
-	const [stateProfesionales, setStateProfesionales] = useState(null)
+    useEffect(() =>{
+        console.log(montoD)
+    },[montoD]);
+
 	const url = "http://localhost:5000/api/get-publicaciones/"+proid;
 
   const fetchDataProfesionales = async () => {
@@ -31,6 +36,40 @@ const Detalle = () => {
 		return null;
 	}
     const descr = parse(stateProfesionales.descripcion)
+
+
+/* 
+        const mercadoPago =  async (event)  =>{
+            event.preventDefault();
+
+            let myHeaders = new Headers();
+
+		        myHeaders.append("Content-Type", "application/json")
+
+		const raw = JSON.stringify({
+			title:'Solidar',
+			price:montoD
+		})
+
+		const options = {
+			method: 'POST',
+			headers: myHeaders,
+			body: raw,
+			redirect: 'follow'
+		}
+
+		const postData = await fetch("http://localhost:5000/checkout", options)
+		const res = postData.json()
+		console.log(res)
+
+        }
+   */
+
+ 
+
+
+
+
     return (
         <>
          <div class="contenidoDetalles">
@@ -97,6 +136,11 @@ const Detalle = () => {
                                             
                                                 </svg>
                                         </button>
+                                        {/* <form onSubmit={mercadoPago}>
+                                        <input onChange={({target}) => setDonacion(target.value)}/>
+                                        <button type="submit">ENVIAR</button>
+                                        </form> */}
+                                        
                                 </div>
                             </div>  
                         </div>
@@ -157,7 +201,11 @@ const Detalle = () => {
                 </div>
                 
                 </div>
-
+                <form action="http://localhost:5000/checkout" method="POST">
+                                <input type="hidden" name="title" value="Solidar"/>
+                                <input type="hidden" name="price" value="2500"/>                                
+                                <input type="submit" value="Donar" class="btn btn-primary btn-block"/>
+                            </form>
            
                 </div>
         </>
