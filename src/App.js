@@ -11,6 +11,7 @@ import Detalle from './components/pages/Detalle';
 /* import {useState, useEffect} from 'react'; */
 import FormPublicar from './components/pages/FormPublicar';
 import PerfilUser from './components/pages/PerfilUser';
+import Pagos from './components/pages/Pagos';
 
 
 function App() {
@@ -44,6 +45,7 @@ function App() {
         <Route exact path="/formularioP" component={FormPublicar}/>
         <Route exact path="/detalle/:proid" component={Detalle}/>
         <Route exact path="/perfil" component={PerfilUser}/>
+        <Route exact path="/pagos/:proid" component={Pagos}/>
       </Switch>
     )
   }

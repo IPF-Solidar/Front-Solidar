@@ -74,7 +74,7 @@ const renderLoginButton = () => {
  const renderPublicar = () => {
     return(
         <li class="nav-item">
-            <Link to= "/formularioP" class="nav-link page-scroll animate__animated animate__bounceInDown" href="#features">PUBLICAR</Link>
+            <Link to= "/formularioP" class="nav-link page-scroll animate__animated animate__bounceInDown" href="#features">CREAR HISTORIAS</Link>
         </li>
     )
  }
@@ -108,7 +108,10 @@ return (
         <div class="collapse navbar-collapse" id="navbarsExampleDefault">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <Link to="/" class="nav-link page-scroll">INICIO <span class="sr-only">(current)</span></Link>
+                    <Link to="/" class="nav-link page-scroll animate__animated animate__bounceInDown">INICIO <span class="sr-only">(current)</span></Link>
+                </li>
+                <li class="nav-item">
+                    <Link to="/publicaciones" class="nav-link page-scroll animate__animated animate__bounceInDown">DONAR <span class="sr-only">(current)</span></Link>
                 </li>
                 {
                     Login
@@ -122,9 +125,9 @@ return (
                   }
 
                 {
-                    Login ? <li class="nav-item d-flex align-items-center ml-lg-3">
-                    <Link to = '/'><img alt="Image" src={Login.perfil} style={style2} /></Link>
-                    <Link to = '/' class='nav-link page-scroll'>{Login.nombre} {Login.apellido}</Link>
+                    Login ? <li class="nav-item d-flex align-items-center ml-lg-3 ">
+                    <Link to = '/perfil'><img alt="Image" src={Login.perfil} style={style2} /></Link>
+                    <Link to = '/perfil' class='nav-link page-scroll '>{Login.nombre} {Login.apellido}</Link>
                 </li>
                     :""
                 }

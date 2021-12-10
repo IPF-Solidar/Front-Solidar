@@ -24,9 +24,11 @@ const FormPublicar = () => {
 /* 	const [descripcion, setDescripcion] = useState(''); */
   const [departamento, setDepartamento] = useState('');
 	const [objetivo, setObjetivo] = useState('');
-	const [urlYoutube, setUrlYoutube] = useState(null);
+	const [nContacto, setNcontacto] = useState(null);
 	const [fechaFinal, setFechaFinal] = useState('');
   const [descripcionEditor, setDescripcionEditor] = useState('');
+  const [cvuP, setCvu] = useState('');
+  const [emailC, setEmailC] = useState('');
 
   const handleChange = (e, editor) =>{
     setDescripcionEditor(editor.getData());
@@ -59,7 +61,9 @@ const FormPublicar = () => {
     formData.append('departamento', departamento)
     formData.append('image', imagen)
     formData.append('objetivo', objetivo)
-    formData.append('urlYoutube', urlYoutube)
+    formData.append('numeroContacto', nContacto)
+    formData.append('cvu', cvuP)
+    formData.append('emailC', emailC)
     formData.append('fechaFinal', fechaFinal)
 
     await axios.post(url, formData, {
@@ -135,11 +139,27 @@ const FormPublicar = () => {
                         </div>
                       </div>
                       <br/>
+                      <h5 style={{textAlign:'center'}}>CONTACTO</h5>
+                      <br/>
                     <div class="row">
                         <div class="col-md-12 form-group">
-                          <input type="text"  class="form-control" name="message" id="message" cols="30" rows="7" placeholder="Ingresar link de un video (opcional)" onChange={({target}) => setUrlYoutube(target.value)}/>
+                          <input type="number" class="form-control" name="message" id="message" cols="30" rows="7" placeholder="Número de contacto (opcional)" onChange={({target}) => setNcontacto(target.value)}/>
                         </div>
                       </div>
+                      <br/>
+                      <div class="row">
+                        <div class="col-md-12 form-group">
+                          <input type="text" class="form-control" name="message" id="message" cols="30" rows="7" placeholder="CVU (opcional)" onChange={({target}) => setCvu(target.value)}/>
+                        </div>
+                      </div>
+                      <br/>
+                      <div class="row">
+                        <div class="col-md-12 form-group">
+                          <input type="email" class="form-control" name="message" id="message" cols="30" rows="7" placeholder="Correo Electronico (opcional)" onChange={({target}) => setEmailC(target.value)}/>
+                        </div>
+                      </div>
+                      <br/>
+                      <h5 style={{textAlign:'center'}}>DETALLES</h5>
                       <br/>
                       <div>
                       <div >
@@ -163,10 +183,10 @@ const FormPublicar = () => {
                         <img class="logo-form" src={logo}/>
                     </figure>
                   <h3 class="h3 mb-4">SUBIR IMAGEN</h3>
-                  <p class="p-detalle">Debes agregar una buena portada a tu publicacion</p>
+                  <p class="p-detalle ">Debes agregar una buena portada a tu publicacion</p>
                   <div class="row">
                     <div class="custom-input-file col-md-6 col-sm-6 col-xs-6">
-                      <input type="file" ref={inputFileRef} />
+                      <input class="input-file" type="file" ref={inputFileRef} />
                       Cargar Portada...
                     </div>
                   </div> 
