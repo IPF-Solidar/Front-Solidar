@@ -1,15 +1,15 @@
-import React, {useState,useEffect}  from 'react'
+import React, {useState,useEffect,useContext}  from 'react'
 
 import { Link } from 'react-router-dom'
-
-
+import { UserContext } from '../../App'
+import { Toaster } from 'react-hot-toast'
 import loginServicios from '../assets/DB/login'
 import '../assets/styles/Login/styleLogin.css'
 
 
 const Login = () => {
 
-	
+/* 	const {state, dispatch} = useContext(UserContext); */
 
 	const[errorMessage, setErrorMessage] = useState (null)
 
@@ -21,9 +21,7 @@ const Login = () => {
 		const loggeUserJSON = window.localStorage.getItem('Solidar-Usuario')
 		if (loggeUserJSON){
 			const user = JSON.parse(loggeUserJSON)
-			setUser(user)
-			
-			
+			setUser(user)	
 		}
 	},[])
 
@@ -49,6 +47,8 @@ const Login = () => {
 				'Solidar-Usuario', JSON.stringify(user)
 			)
 
+			/* dispatch({ type: "TOKEN", payload: user.token}) */
+
 			
 			
 			setUser(user);
@@ -69,7 +69,7 @@ const Login = () => {
 
     return (
 	<body>
-		
+		 <Toaster/>
     <div class="login-dark">
         <form  onSubmit={handleSubmit}>
             <h2 class="sr-only">FORMULARIO</h2>

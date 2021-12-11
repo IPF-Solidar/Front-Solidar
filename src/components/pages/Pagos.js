@@ -1,6 +1,6 @@
 import React, {useState,useEffect} from 'react'
 import '../assets/styles/css/metodosPagos/mPagos.css'
-
+import QRCode from "react-qr-code";
 import { useParams } from 'react-router';
 
 const Pagos = () => {
@@ -51,7 +51,9 @@ const Pagos = () => {
                 <label for="tab4">Drupal</label> */}
                
                 <section id="content1">
-                <form action="http://localhost:5000/checkout" method="POST">
+                {
+                    stateProfesionales.mpMercadoPago ?
+                    <form action="http://localhost:5000/checkout" method="POST" /* target="_blank" */>
                                 <img style={{width:'50%',position:'relative', left:'170px'}}src='https://hvghobbies.com/wp-content/uploads/2019/07/mercadopago-01-e1562863464953.png?w=640'/>
                                 <br/><br/>
                                 <h2 style={{textAlign:'center', color:'cyan'}}>Ingresar el monto que desea donar</h2>
@@ -61,13 +63,28 @@ const Pagos = () => {
                                 <input type="number"  name="price"  placeholder='Ingresar valor'/>
                                 
                                 <br/>    <br/>    <br/>                      
-                                <input type="submit" value="Donar" class="btn btn-success btn-block"/>
+                                <input type="submit" value="Donar"  class="btn btn-success btn-block"/>
                 </form>
+                :<h3 style={{textAlign:'center'}}><i class="bx bxs-message-square-error"></i> No puedes donar con este metodo</h3>
+                }
                 </section>
                     
                 <section id="content2">
-                    <img style={{width:'50%',position:'relative', left:'170px'}} src="https://lh3.googleusercontent.com/proxy/nSIGCbxvBv2ztSaDnblxsxr-KtFZ74mzwvJtLKrsFiswZcYZ9PdQQOv-Ubz99iBYhPGShg5s5HiFWGLcAVa29BjuHZCML_rCuuZhxXh2MCFWgg"/>
-                    
+                    {/* <img style={{width:'50%',position:'relative', left:'170px'}} src="http://webtilia-hostd1.com/img/Mant.png"/> */}
+                    {
+                        stateProfesionales.mpCriptomonedas ?
+                        <div>
+                        <h3 style={{textAlign:'center', color:'cyan'}}>Escanearlo con <b style={{color:'yellow'}}>BINANCE</b></h3>
+                    <a href='https://www.binance.com/es' target="_blank"><img style={{width:'10%',position:'relative', left:'310px'}}src='https://logodownload.org/wp-content/uploads/2021/03/binance-logo-1.png'/></a>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <div style={{width:'50%',position:'relative', left:'220px'}}>
+                        <QRCode value={stateProfesionales.mpCriptomonedas} />
+                    </div>
+                    </div>
+                    :<h3 style={{textAlign:'center'}}><i class="bx bxs-message-square-error"></i>No puedes donar con este metodo</h3>
+                    }
                 </section>
                 
                 <section id="content3">

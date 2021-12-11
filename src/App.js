@@ -8,60 +8,80 @@ import Contact from './components/pages/Contact';
 import Register from './components/pages/Register';
 import Home from  './components/pages/Home'
 import Detalle from './components/pages/Detalle';
-/* import {useState, useEffect} from 'react'; */
 import FormPublicar from './components/pages/FormPublicar';
 import PerfilUser from './components/pages/PerfilUser';
 import Pagos from './components/pages/Pagos';
+import NotFound from './components/pages/NotFound';
 
+/* import { createContext, useContext, useReducer } from 'react'
+
+import { reducer, initialState} from './utils/Reducer' */
+
+/* export const UserContext = createContext() */
+  
+  /* const Routing = () => {
+
+    const {state, dispatch} = useContext(UserContext)
+    //rutas privadas
+    if(state){
+      return(
+        <Switch>
+          <Route exact path="/formularioP" component={FormPublicar}/>
+          <Route exact path="/pagos/:proid" component={Pagos}/>
+          <Route exact path="*" component={NotFound}/>
+        </Switch>
+      )
+    }
+    //rutas publicas
+      if (!state){
+        return(
+          <Switch>
+            <Route exact path="/detalle/:proid" component={Detalle}/>
+            <Route exact path="/publicaciones" component={Home}/>
+            <Route exact path="/" component={Landing} />
+            <Route exact path="/login" component={Login}/>
+            <Route exact path="/contact" component={Contact}/>
+            <Route exact path="/register" component={Register}/>
+            <Route exact path="/perfil" component={PerfilUser}/>
+            <Route exact path="*" component={NotFound}/>
+          </Switch>
+        )
+      }
+    
+    
+  } */
 
 function App() {
 
-/*   const url = "http://localhost:5000/api/get-publicaciones";
-
-  const [stateProfesionales, setStateProfesionales] = useState([])
-
-  const fetchDataProfesionales = async () => {
-      try {
-          const peticion = await fetch(url)
-          const res = await peticion.json()
-          console.log(res + " Hola")
-          setStateProfesionales(res)
-      } catch (error) {console.log("Mini error "+error)}
-  }
-
-  useEffect(() => {
-      fetchDataProfesionales()
-  },[]) */
-  
   const Routing = () => {
-
-    return(
-      <Switch>
-        <Route exact path="/" component={Landing} />
-        <Route exact path="/login" component={Login}/>
-        <Route exact path="/contact" component={Contact}/>
-        <Route exact path="/register" component={Register}/>
-        <Route exact path="/publicaciones" component={Home}/>
-        <Route exact path="/formularioP" component={FormPublicar}/>
-        <Route exact path="/detalle/:proid" component={Detalle}/>
-        <Route exact path="/perfil" component={PerfilUser}/>
-        <Route exact path="/pagos/:proid" component={Pagos}/>
-      </Switch>
-    )
+      return(
+        <Switch>
+            <Route exact path="/formularioP" component={FormPublicar}/>
+            <Route exact path="/pagos/:proid" component={Pagos}/>
+            <Route exact path="/detalle/:proid" component={Detalle}/>
+            <Route exact path="/publicaciones" component={Home}/>
+            <Route exact path="/" component={Landing} />
+            <Route exact path="/login" component={Login}/>
+            <Route exact path="/contact" component={Contact}/>
+            <Route exact path="/register" component={Register}/>
+            <Route exact path="/perfil" component={PerfilUser}/>
+            <Route exact path="*" component={NotFound}/>
+            <Route exact path="*" component={NotFound}/>
+        </Switch>
+      )
   }
 
 
+  /* const [state, dispatch] = useReducer(reducer, initialState) */
+/* <UserContext.Provider value = {{state, dispatch}}> */
+/* </UserContext.Provider> */
     return (
-  <>
-  
       
       <Router>
-        <Navbar /* listProf={stateProfesionales ? stateProfesionales : null} *//>
+        <Navbar/>
         <Routing />
       </Router>
-     
-  </>
-  
+      
     )
   }
 
