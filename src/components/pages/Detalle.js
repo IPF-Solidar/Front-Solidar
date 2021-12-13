@@ -5,11 +5,24 @@ import parse from 'html-react-parser';
 
 import { useParams } from 'react-router';
 import { Link } from 'react-router-dom';
+import login from '../assets/DB/login';
 
 
 const Detalle = () => {
 
     const [Login, setLogin] = useState(null);
+
+    const [nuevoComentario,setNuevoComentario] = useState(null);
+
+    const fechaHoy = new Date()
+    const dia = (fechaHoy.getDate());
+    const mes = (fechaHoy.getMonth()+1)
+    const año = fechaHoy.getFullYear()
+    const fechaActual =  dia +'/'+ mes +  '/' + año
+    /* console.log(fechaActual) */
+
+  
+    
     
     useEffect(() => {
       const usuarioT = localStorage.getItem('Solidar-Usuario')
@@ -23,48 +36,97 @@ const Detalle = () => {
     const {proid} = useParams();
 	//console.log(proid + " xdxdxd");
     
-	const [stateProfesionales, setStateProfesionales] = useState(0);
-  
+	const [statePublicacion, setStatePublicacion] = useState(0);
+    /* const [comentarios, setComentarios] = useState([]); */
    
 
 
-	const url = "http://localhost:5000/api/get-publicaciones/"+proid;
+    const url = "http://localhost:5000/api/get-publicaciones/"+proid;
 
-  const fetchDataProfesionales = async () => {
+  const fetchDataPublicacionUnica = async () => {
       try {
           const peticion = await fetch(url)
           const res = await peticion.json()
-          console.log(res + 'xd')
-          setStateProfesionales(res)
+          /* console.log(res + 'xd') */
+          setStatePublicacion(res)
+      } catch (error) {console.log(error)}
+  }
+
+  const [comentarios, setComentarios] = useState ([])
+	const urlC = "http://localhost:5000/api/get-comentariosUnicos/"+proid;
+
+  const fetchDataComentarios = async () => {
+      try {
+          const peticion = await fetch(urlC)
+          const res = await peticion.json()
+          /* console.log(res ) */
+          setComentarios(res)
+         
       } catch (error) {console.log(error)}
   }
 
   useEffect(() => {
-      fetchDataProfesionales()
-  },[proid])
+    fetchDataComentarios()
+  },[])
 	
-	if(!stateProfesionales){
+	
+
+  useEffect(() => {
+      fetchDataPublicacionUnica()
+  },[proid])
+
+
+    if(!comentarios){
+        return null;
+    }
+	if(!statePublicacion){
 		return null;
 	}
-    const descr = parse(stateProfesionales.descripcion)
+
+
 
     
-console.log(stateProfesionales)
+    const guardarComentario = async (e) => {
+        e.preventDefault()
+
+			const raw = JSON.stringify({
+				idPublicacion: proid,
+				fecha: fechaActual,
+				descripcion: nuevoComentario,
+				
+			})
+
+			const options = {
+				method: 'POST',
+				headers: {
+                    'x-token': Login.token,
+                    'Content-Type': 'application/json'
+                },
+				body: raw,
+				redirect: 'follow'
+			}
+
+			const postData = await fetch("http://localhost:5000/api/create-comentarios", options)
+			const res = postData.json()
+			console.log(res)
+            setNuevoComentario('')
+            fetchDataComentarios()
+    }
+
+
+    const descr = parse(statePublicacion.descripcion)
+  
+    const progress = (statePublicacion.dineroActual/statePublicacion.objetivo)*100;
  
-
-    const progress = (stateProfesionales.dineroActual/stateProfesionales.objetivo)*100;
-    console.log(progress)
-   
-
-
+    
     return (
         <>
          <div class="contenidoDetalles">
         <figure class="portada-solidar-detalles">
-                        <img src={stateProfesionales.imgUrl} alt="Portada"/>
+                        <img src={statePublicacion.imgUrl} alt="Portada"/>
                 </figure>
         <div class="tabset">
-                <input type="radio" name="tabset" id="tab1" aria-controls="marzen" checked/>
+                <input type="radio" name="tabset" id="tab1" aria-controls="marzen" /* checked *//>
                 <label for="tab1">PUBLICACION</label>
 
                 <input type="radio" name="tabset" id="tab2" aria-controls="rauchbier" /> 
@@ -80,7 +142,7 @@ console.log(stateProfesionales)
                     <div class="container">
                         <div class="container-solidar">
                             <div class="titulo-detalles">
-                                <h2>{stateProfesionales.titulo}</h2>
+                                <h2>{statePublicacion.titulo}</h2>
                             </div>
                             <hr/>
                             <div class="descripcion-detalles">
@@ -94,7 +156,7 @@ console.log(stateProfesionales)
                                     <h5>¿QUIERES AYUDAR?</h5>
                                     {
                                         Login  ?
-                                        <Link to ={{pathname:'/pagos/' + stateProfesionales._id}}><button class="button" >
+                                        <Link to ={{pathname:'/pagos/' + statePublicacion._id}}><button class="button" >
                                         <span class="button__text">
                                         <span>D</span><span>O</span><span>N</span><span>A</span><span>R</span>
                                         </span>
@@ -150,40 +212,39 @@ console.log(stateProfesionales)
                                         <fieldset>
                                             <div class="row">
                                                 <div class="form-group col-xs-12 col-sm-9 col-lg-10">
-                                                    <textarea class="form-control" id="message" placeholder="Escribir comentario..." required=""></textarea>
+                                                    <textarea class="form-control" id="message" placeholder="Escribir comentario..." value={nuevoComentario} onChange={(e) => {setNuevoComentario(e.target.value)}} required></textarea>
                                                 </div>
                                             </div>  
-                                            <button type="submit" class="btn btn-success pull-right">Enviar</button>	
+                                            <button type='submit' class="btn btn-success pull-right" onClick={guardarComentario}>Enviar</button>	
                                         </fieldset>
                                        
                                     </form>
                 
                                             <h3 class="coment-h3">Comentarios</h3>
                                             
-                                        
-                                            <div class="media">
-                                                <a class="pull-left" href="#"><img class="media-object" src="https://bootdey.com/img/Content/avatar/avatar1.png" alt=""/></a>
-                                                <div class="media-body">
-                                                    <h4 class="media-heading">John Doe</h4>
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                                                    <ul class="list-unstyled list-inline media-detail pull-left">
-                                                        <li><i class="fa fa-calendar"></i>27/02/2014</li>
+                                            { 
+                                                comentarios.length > 0 ? comentarios.map(item => { 
+                                                    let fecha = new Date(item.fecha)
+                                                    const dia = (fecha.getDate()+1);
+                                                    const mes = (fecha.getMonth()+1)
+                                                    const año = fecha.getFullYear()
+                                                    const fechaPublicacion =  dia +'/'+ mes +  '/' + año
                                                     
-                                                    </ul>
-                                                    
-                                                </div>
-                                            </div>
-                                            
-                                            <div class="media">
-                                                <a class="pull-left" href="#"><img class="media-object" src="https://bootdey.com/img/Content/avatar/avatar2.png" alt=""/></a>
-                                                <div class="media-body">
-                                                    <h4 class="media-heading">John Doe</h4>
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                                                    <ul class="list-unstyled list-inline media-detail pull-left">
-                                                        <li><i class="fa fa-calendar"></i>27/02/2014</li>
-                                                    </ul>  
-                                                </div>
-                                            </div>
+                                                    return( 
+                                                        <div class="media">
+                                                        <a class="pull-left" href="#"><img class="media-object" style={{borderRadius:'40px'}} src={item.autor.fotoPerfil} alt=""/></a>
+                                                        <div class="media-body">
+                                                            <Link to={{pathname:'/perfiles/' + item.autor._id}} style={{textDecoration: 'none'}}><h4 class="media-heading" >{item.autor.nombre} {item.autor.apellido}</h4></Link>
+                                                            <p>{item.descripcion}</p>
+                                                            <ul class="list-unstyled list-inline media-detail pull-left">
+                                                                <li><i class="fa fa-calendar"></i>{fechaPublicacion}</li>                                                     
+                                                            </ul>
+
+                                                        </div>
+                                                    </div> 
+                                                    )
+                                                    }): <div><br/><h3 style={{margin:'auto', color:'white'}}><b>No Hay Comentarios...</b></h3></div>
+                                                }
                                         </div>
                                     </div>
                                 </div>

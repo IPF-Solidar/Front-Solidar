@@ -4,7 +4,7 @@ body .body-login {
 
 .login-dark {
     height:1000px;
-    background:#475d62 url(../images/download-background.jpg);
+    background: -webkit-linear-gradient(left, #3931af, #00c6ff);
     background-size:cover;
     position:relative;
   }

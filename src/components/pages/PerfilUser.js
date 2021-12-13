@@ -7,6 +7,27 @@ const PerfilUser = () => {
     const CorreoUser = localStorage.getItem('Solidar-Usuario')
     const [perfil, setPerfil] = useState();
 
+    const [edit, setEdit] = useState(false);
+
+    const ActivarEdit = () =>{
+        setEdit(true)
+    }
+    const CancelarEdit = () =>{
+        setEdit(false)
+    }
+
+    
+        
+    
+
+       /*  const [nombre, setNombre] = useState(null)
+        const [apellido, setApellido] = useState(null)
+        const [email, setEmail] = useState(null)
+        const [domicilio, setDomicilio] = useState(null) */
+
+
+    
+
     if (CorreoUser){
         const parse = JSON.parse(CorreoUser);
         var correo = parse.correo;
@@ -26,47 +47,170 @@ const PerfilUser = () => {
     useEffect(() => {
         mostrarDatos()
     },[])
+    
 
     /* console.log(perfil) */
+    
     if(!perfil){
 		return null;
 	}
     
+    const GuardarDatos = async () =>{
+       
+    }
+    
     return (
-        <div>
-            
-           
-            <div class="wrapper bg-white mt-sm-5">
-    <h4 class="pb-4 border-bottom">Configuración de la cuenta</h4>
-    <div class="d-flex align-perfils-start py-3 border-bottom"> <img src={perfil.fotoPerfil} class="img" alt=""/>
-        <div class="pl-sm-4 pl-2" id="img-section"> <b>Foto de perfil</b>
-            <p>Acepta archivos menores a 1MB</p> <input type="file" class="btn button border"/><b>Subir Foto</b>
-        </div>
-    </div>
-    <div class="py-2">
-        <div class="row py-2">
-            <div class="col-md-6"> <label for="firstname">Nombre</label> <input type="text" class="bg-light form-control" value={perfil.nombre}/> </div>
-            <div class="col-md-6 pt-md-0 pt-3"> <label for="lastname">Apellido</label> <input type="text" class="bg-light form-control" value={perfil.apellido}/> </div>
-        </div>
-        <div class="row py-2">
-            <div class="col-md-6"> <label for="email">Correo Electronico</label> <input type="text" class="bg-light form-control" value={perfil.email}/> </div>
-            <div class="col-md-6 pt-md-0 pt-3"> <label for="phone">D.N.I</label> <input disabled type="tel" class="bg-light form-control" value={perfil.dni}/> </div>
-        </div>
-        <div class="row py-2">
-            <div class="col-md-6"> <label for="text">Domicilio</label> <input disabled type="text" class="bg-light form-control" value={perfil.domicilio}/> </div>
-            <div class="col-md-6 pt-md-0 pt-3"> <label for="phone">Fecha De Nacimiento</label> <input disabled type="tel" class="bg-light form-control" value={perfil.fecha_nacimiento}/> </div>
-        </div>
-        <div class="py-3 pb-4 border-bottom"> <button class="btn btn-primary mr-3">Guardar Cambios</button> <button class="btn border button">Cancelar</button> </div>
-        <div class="d-sm-flex align-perfils-center pt-3" id="deactivate">
-            <div> <b>Desactivar Cuenta</b>
-                <p>Si desactivas tu cuenta solo un admin
-                     podra activarla nuevamente</p>
-            </div>
-            <div class="ml-auto"> <button class="btn danger">DESACTIVAR</button> </div>
-        </div>
-    </div>
-</div>
+        
+<div class="container emp-profile">
+    
+            <form method="post">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="profile-img">
+                            <img src={perfil.fotoPerfil} alt=""/>
+                            <div class="file btn btn-lg btn-primary">
+                                Actualizar Foto
+                                <input type="file" name="file"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="profile-head">
+                                    <h5>
+                                    {perfil.nombre} {perfil.apellido}
+                                    </h5>
+                                    <h6>
+                                        SOLIDAR
+                                    </h6>
+                                    <p class="proile-rating">DNI: <span>{perfil.dni}</span></p>
+                            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Información Personal</a>
+                                </li>
+                                
+                            </ul>
+                        </div>
+                    </div>
+                    {
+                        !edit ?
+                        <div class="col-md-2">
+                        <input type='button' onClick={ActivarEdit} class="profile-edit-btn" name="btnAddMore"  value="Editar Perfil"/>
+                        </div>
+                    :""
+                    }
+                   
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="profile-work">
+                            {/* <p>PUBLICACIONES</p> */}
+                            {/* <a href="http://localhost:3000/detalle/61b103bef237f2e83cb43c5c">Juguetes Para Niño</a><br/> */}
+                            
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="tab-content profile-tab" id="myTabContent">
+                            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                        {
+                                            !edit ?
+                                            <div>
+                                                <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Nombre</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>{perfil.nombre}</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Apellido</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>{perfil.apellido}</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Email</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>{perfil.email}</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Domicilio</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>{perfil.domicilio}</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Fecha De Nacimiento</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>{perfil.fecha_nacimiento}</p>
+                                            </div>
+                                        </div>
+                                            </div>
 
+                                            :
+
+                                            <div>
+                                                <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Nombre</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <input value={perfil.nombre} />
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Apellido</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                            <input value={perfil.apellido} />
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Email</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                            <input value={perfil.email}/>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Domicilio</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                            <input value={perfil.domicilio}/>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Fecha De Nacimiento</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                            <input disabled value={perfil.fecha_nacimiento}/>
+                                            </div>
+                                        </div>
+                                        <br/>
+                                            <div class=''>
+                                            <button type="button" class="btn btn-outline-success mr-4" onClick={GuardarDatos}>Guardar Cambios</button>
+                                        <button type="button" class="btn btn-outline-danger" onClick={CancelarEdit}>Cancelar</button>
+                                        </div>
+                                            </div>
+                                        }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>           
         </div>
     )
 }

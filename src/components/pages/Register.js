@@ -20,14 +20,15 @@ const Register = () => {
 			contraseña:"",
 		},
 		validationSchema: yup.object({
-			nombre: yup.string().required("El Nombre es obligatorio"),
-			apellido: yup.string().required("El Apellido es obligatorio"),
-			dni: yup.string().min(7, "El DNI debe tener como minimo 7 caracteres").required("El Dni es obligatorio"),
-			cumpleaños: yup.date().required("Fecha de Nacimiento es obligatorio"),
-			domicilio: yup.string().required("El Domicilio es obligatorio"),
-			correo: yup.string("El email no es valido").email("El Correo Electronico es incorrecto").required("El Correo Electronico es obligatorio"),
-			contraseña: yup.string().min(6,"La contraseña debe tener minimo 6 caracteres").required("La contraseña no es valida"),
+			nombre: yup.string().required(<p style={{color:'red'}}>El Nombre es obligatorio</p>),
+			apellido: yup.string().required(<p style={{color:'red'}}>El Apellido es obligatorio</p>),
+			dni: yup.string().min(7, <p style={{color:'red'}}>El DNI debe tener <b style={{color:'tomato'}}>7 caracteres como minimo</b></p>).required(<p style={{color:'red'}}>El DNI es obligatorio</p>),
+			cumpleaños: yup.date().required(<p style={{color:'red'}}>La Fecha de Nacimiento es obligatoria</p>),
+			domicilio: yup.string().required(<p style={{color:'red'}}>El Domicilio es obligatorio</p>),
+			correo: yup.string().email(<p style={{color:'red'}}>El Email no es valido</p>).required(<p style={{color:'red'}}>El Correo Electronico es obligatorio</p>),
+			contraseña: yup.string().min(6,<p style={{color:'red'}}>La contraseña debe tener <b style={{color:'tomato'}}>6 caracteres como minimo</b></p>).required(<p style={{color:'red'}}>La contraseña es incorrecta</p>),
 		}),
+		
 		onSubmit: async (formData)  =>{
 			let myHeaders = new Headers();
 
@@ -152,6 +153,7 @@ const Register = () => {
 									</div>
 									<div class="col-md-6">
 										<div class="form-group">
+											<label style={{color:'white'}}>Fecha De Nacimiento</label>
 											<Form.Input
 												type="date" 
 												class="form-control" 

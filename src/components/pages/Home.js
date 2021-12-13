@@ -6,9 +6,10 @@ import '../assets/styles/css/tarjeta/card.css'
 import { Toaster } from 'react-hot-toast'
 import { Link } from 'react-router-dom';
 import parse from 'html-react-parser';
-
+import loaderSvg from '../assets/styles/svg/Eater.svg'
 const Home = () => {
 
+    /* const [fechaLimite, setFechaLimite] = useState(true) */
   const [listatadoCompleto, setListadoCompleto] = useState ([])
 	const url = "http://localhost:5000/api/get-publicaciones";
 
@@ -16,7 +17,7 @@ const Home = () => {
       try {
           const peticion = await fetch(url)
           const res = await peticion.json()
-          //console.log(res + 'xd')
+          /* console.log(res) */
           setListadoCompleto(res)
          
       } catch (error) {console.log(error)}
@@ -30,7 +31,7 @@ const Home = () => {
 	if(!listatadoCompleto){
 		return null;
 	}
-        
+       
 
 
   
@@ -48,14 +49,29 @@ const Home = () => {
       listatadoCompleto.length > 0 ? listatadoCompleto.map(item => { 
         const descr = parse(item.descripcion.substring(0,134))
         const progress = (item.dineroActual/item.objetivo)*100;
+        /* console.log(item.fechaFinal.substring(0,10)) */
+        const fechaFin = item.fechaFinal.substring(0,10)
+        const f = new Date()
+        const dia = (f.getDate());
+        const mes = (f.getMonth()+1 )
+        const año = f.getFullYear()
+        const fechaActual = año + '-' +dia + '-' + mes
+      
         
+        /* console.log(fechaActual)
+        console.log(fechaFin) */
+        
+           
+
+
+
                     return(
           <article class="article-cardSolidar  animate__animated animate__bounceInLeft">
               <figure class="article-imageSolidar">
                   <img src={item.imgUrl} alt="Portada"/>
               </figure>
               <div class="article-contentSolidar">
-                  <h5  class="card-categorySolidar">Por: <b>{item.autor.nombre} {item.autor.apellido}</b></h5>
+                  <h5  class="card-categorySolidar">Por: <Link to={{pathname:'/perfiles/' + item.autor._id}} class="btn-link-perfiles"><b>{item.autor.nombre} {item.autor.apellido}</b></Link></h5>
                   <h5  class="card-categorySolidar2">De: <b>{item.departamento}</b></h5>
                   <hr class="hrSolidar"/>
                   <h3 class="card-titleSolidar">{item.titulo}</h3>
@@ -63,14 +79,18 @@ const Home = () => {
                   <p class="card-excerpt">{descr}</p>
                   <hr class="hrSolidar"/>
                   {
-                      progress < 100 ? <progress class="card-progressSolidar"id="file" max="100" value={progress}> 70% </progress>
+                      fechaActual == fechaFin ? <h5 class ="h5-finalizado">Finalizado</h5>
+                      :
+                      <div>
+                          {
+                      progress < 100  ? <progress class="card-progressSolidar"id="file" max="100" value={progress}> 70% </progress>
                       : 
                         <div>
                           <h5 class ="h5-finalizado">Finalizado</h5>
                         </div>
                   }
                     {
-                        progress < 100 ?
+                        progress < 100   ?
                         <div class="textos">
                           <div class="derecho">
                             <p class="card-objetivoActual">${item.dineroActual}</p>
@@ -82,11 +102,17 @@ const Home = () => {
                     : ""
                     }
                     
-                  <Link to ={{pathname:'/detalle/' + item._id}} href="#">Leer Más</Link> 
+                  
+                      </div>
+                  }
+                  
+                  <Link  to ={{pathname:'/detalle/' + item._id}} class="btn-leer-mas" >Leer Más</Link> 
               </div>
           </article>   
           )
-        }): <h1 style={{margin:'auto', color:'black'}}><b>NO SE HAN CARGADO LAS PUBLICACIONES</b></h1>
+        }): <dvi>
+            <img style={{marginLeft:'115%', width:'100%',marginTop:'30%' }} src={loaderSvg}/>
+            </dvi>
       }
       
       

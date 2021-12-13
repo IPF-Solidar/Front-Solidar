@@ -52,7 +52,7 @@ const Landing = () => {
                     <div className="text-container">
                         <h3>SOLIDAR</h3>
                         <p>No necesitas una razón para ayudar a los demás</p>
-                        <a className="btn-solid-reg popup-with-move-anim" href="#details-lightbox-1">CONTACTO</a>
+                        <Link className="btn-solid-reg popup-with-move-anim" to="/contact">CONTACTO</Link>
                     </div> 
                 </div> 
             </div> 

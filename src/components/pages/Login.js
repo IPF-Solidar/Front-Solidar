@@ -54,7 +54,7 @@ const Login = () => {
 			setUser(user);
 			setemail('');
 			setPassword('');
-			window.location.href="/"
+			window.location.href="/publicaciones"
 		
 		}catch(e){
 			setErrorMessage('Usuario o Contraseña no existe')

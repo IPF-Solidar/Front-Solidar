@@ -88,7 +88,13 @@
     text-align: justify;
     
 }
-.article-contentSolidar a{
+.btn-link-perfiles{
+    color: #6b82a7af;
+}
+.btn-link-perfiles:hover{
+    color: #04a1c9af;
+}
+.btn-leer-mas{
     text-decoration: none;
     display: inline-block;
     padding: 10px;
@@ -101,7 +107,7 @@
     text-align: center;
 }
 
-.article-contentSolidar a:hover{
+.btn-leer-mas:hover{
     background: rgb(4, 167, 167);
     color: white;
 }

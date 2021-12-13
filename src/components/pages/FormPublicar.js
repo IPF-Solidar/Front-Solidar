@@ -32,8 +32,10 @@ const FormPublicar = () => {
   const [cvuP, setCvu] = useState('');
   const [emailC, setEmailC] = useState('');
   const [mpMercadoPago, setMPMercadoPago] = useState(false); 
-  const [mpCriptomonedas, setMPCriptomonedas] = useState(false); 
-const [imagenUrl, setImage] = useState(sinFoto);
+  const [mpCriptomonedas, setMPCriptomonedas] = useState(false);
+  const [mpURLCripto, setMpURLCripto] = useState('') 
+  const [mpURLMercadoPago, setMpURLMercadoPago] = useState('') 
+  const [imagenUrl, setImage] = useState(sinFoto);
   const handleChange = (e, editor) =>{
     setDescripcionEditor(editor.getData());
   }
@@ -58,7 +60,7 @@ const [imagenUrl, setImage] = useState(sinFoto);
   const handleSubmit = async (e) => {
     e.preventDefault();
     const imagen = inputFileRef.current.files[0]
-
+    console.log(imagen)
     const formData = new FormData();
     formData.append('titulo', titulo)
     formData.append('descripcion', descripcionEditor)
@@ -68,6 +70,8 @@ const [imagenUrl, setImage] = useState(sinFoto);
     formData.append('numeroContacto', nContacto)
     formData.append('cvu', cvuP)
     formData.append('emailC', emailC)
+    formData.append('mpCriptomonedas', mpURLCripto)
+    formData.append('mpMercadoPago', mpURLMercadoPago)
     formData.append('fechaFinal', fechaFinal)
 
     await axios.post(url, formData, {
@@ -96,34 +100,39 @@ const [imagenUrl, setImage] = useState(sinFoto);
 
     const subirImagen = (e) =>{
       const fileImagen = e.target.files[0]
+      
       const urlImagen = URL.createObjectURL(fileImagen);
-
       setImage(urlImagen)
     }
 
     return (
-        <div class="content-form-solidar">
-           
-        <div class="container">
-    
-          
-          <div class="row justify-content-center">
-            <div class="col-md-10">
-              
-              <div class="row align-items-center">
-                <div class="col-lg-7 mb-5 mb-lg-0">
-    
-                  <h2 class="h2 mb-5 animate__animated animate__fadeInTopLeft">FORMULARIO</h2>
-                   
-                  <form class="border-right pr-5 mb-5" method="post" id="contactForm" name="contactForm" onSubmit={handleSubmit}>
-                    <div class="row">
-                      <div class="col-md-6 form-group">
-                        <input type="text" class="form-control" name="fname" id="fname" placeholder="Titulo de La publicacion" onChange={({target}) => setTitulo(target.value)} Required/>
-                      </div>
+      <div class="container rounded bg-white mt-5 mb-5">
+        <form onSubmit={handleSubmit}>
+      <div class="row">
+      <Toaster/>
+      
+          <div class="col-md-3 border-right">
+            
+              <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" width="150px" src={imagenUrl}/> <br/>
+              <span class="font-weight-bold" style={{color:'black'}}>SUBIR FOTO DE PORTADA</span>
+              <br/>
+              <div class="custom-input-file col-md-6 col-sm-6 col-xs-6">
+                      <input class="input-file" type="file" ref={inputFileRef} onChange={subirImagen}/>
+                      Cargar Portada...
                       
-                      <div class="col-md-6 form-group">
-                        <select name="select" class="form-control-select" onChange={({target}) => setDepartamento(target.value)} Required>
-                            <option selected disabled value="Formosa (capital)">Seleccionar Departamento</option>
+              </div>
+                    
+              </div>
+          </div>
+          <div class="col-md-5 border-right">
+              <div class="p-3 py-5">
+                  <div class="d-flex justify-content-between align-items-center mb-3">
+                      <h4 class="text-right" style={{color:'black'}}>Crear Una Historia</h4>
+                  </div>
+                  <div class="row mt-2">
+                      <div class="col-md-6"><label class="labels">Titulo De La Publicacion</label><input type="text" class="form-control" placeholder="Titulo" onChange={({target}) => setTitulo(target.value)}  /></div>
+                      <div class="col-md-6"><label class="labels">Departamento</label><select name="select" class="form-control" onChange={({target}) => setDepartamento(target.value)} Required>
+                            <option selected disabled value="Formosa (capital)">Seleccionar</option>
                             <option value="Formosa (capital)">Formosa (capital)</option>
                             <option value="Bermejo" >Bermejo</option>
                             <option value="Laishí">Laishí</option>
@@ -133,49 +142,34 @@ const [imagenUrl, setImage] = useState(sinFoto);
                             <option value="Pilcomayo">Pilcomayo</option>
                             <option value="Pirané">Pirané</option>
                             <option value="Ramón Lista">Ramón Lista</option>
-                          </select>
-                      </div>
-                    </div>
-                   
-                    <br/>
-                    <div class="row">
-                        <div class="col-md-12 form-group">
-                          <input type="text" class="form-control" name="message" id="message" cols="30" rows="7" placeholder="$ Objetivo (Pesos Arg)" onChange={({target}) => setObjetivo(target.value)} Required/>
-                        </div>
-                      </div>
-                      <br/>
-                      <div class="row">
-                        <div class="col-md-12 form-group">
-                          <label>Fecha que finalizara la publicacion</label>
-                          <input type="date"  class="form-control" name="message" id="message" cols="30" rows="7"onChange={({target}) => setFechaFinal(target.value)} Required/>
-                        </div>
-                      </div>
-                      <br/>
-                      <h5 style={{textAlign:'center'}}>CONTACTO</h5>
-                      <br/>
-                    <div class="row">
-                        <div class="col-md-12 form-group">
-                          <input type="number" class="form-control" name="message" id="message" cols="30" rows="7" placeholder="Número de contacto (opcional)" onChange={({target}) => setNcontacto(target.value)}/>
-                        </div>
+                          </select></div>
+                  </div>
+                  <div class="row mt-3">
+                      
+                      <div class="col-md-12"><label class="labels">Objetivo</label><input type="text" class="form-control" placeholder="Ingresar Un objetivo en $ARG" onChange={({target}) => setObjetivo(target.value)} Required/></div>
+                      <div class="col-md-12"><label class="labels">Fecha Que Finaliza Su Historia</label><input type="date"  class="form-control" name="message" id="message" cols="30" rows="7"onChange={({target}) => setFechaFinal(target.value)} Required/></div>
                     </div>
                       <br/>
-                      <div class="row">
-                        <div class="col-md-12 form-group">
-                          <input type="text" class="form-control" name="message" id="message" cols="30" rows="7" placeholder="CVU (opcional)" onChange={({target}) => setCvu(target.value)}/>
+                      <div class="row mt-3">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                          <h4 class="text-right" style={{color:'black'}}>CONTACTO</h4>
                         </div>
-                      </div>
                       <br/>
-                      <div class="row">
-                        <div class="col-md-12 form-group">
-                          <input type="email" class="form-control" name="message" id="message" cols="30" rows="7" placeholder="Correo Electronico (opcional)" onChange={({target}) => setEmailC(target.value)}/>
+                      <div class="col-md-12"><label class="labels">Número De Contacto</label><input type="text" class="form-control" placeholder="Ingresar Nro Contacto (Opcional) " onChange={({target}) => setNcontacto(target.value)}/></div>
+                      <div class="col-md-12"><label class="labels">Correo Electronico</label><input type="text" class="form-control" placeholder="Ingresa un Correo Electronico (Opcional)" onChange={({target}) => setEmailC(target.value)}/></div>
+                      <div class="col-md-12"><label class="labels">CVU</label><input type="text" class="form-control" placeholder="Ingresa tu CVU para recribir los cobros (Opcional)" onChange={({target}) => setCvu(target.value)}/></div>
+                      </div>
+                  <div class="row mt-3">
+                    
+                  <div class="row">
+                  <div class="d-flex justify-content-between align-items-center mb-3">
+                          <h4 class="text-right" style={{color:'black'}}>METODOS DE COBRO</h4>
                         </div>
-                      </div>
                       <br/>
-                    <div class="row">
                           <div class="col-md-6 form-group">
                               <div class="grid">
                                     <label class="card">
-                                        <input class="card__input" type="checkbox" onClick={() => cambiarEstado(!mpMercadoPago)} required/>
+                                        <input class="card__input" type="checkbox" onClick={() => cambiarEstado(!mpMercadoPago)} required />
                                         <div class="card__body">
                                           <div class="card__body-cover"><img class="card__body-cover-image" src={mp}/><span class="card__body-cover-checkbox"> 
                                                 <svg class="card__body-cover-checkbox--svg" viewBox="0 0 12 10">
@@ -209,16 +203,17 @@ const [imagenUrl, setImage] = useState(sinFoto);
                                             </header>
                                         </div>
                                     </label>
-                                    
                                 </div>
                           </div>
                         </div>
                     </div>
                     <div class="row">
+                    
                       {
                         mpMercadoPago ?
                         <div class="col-md-6 form-group">
-                        <input type="text" class="form-control" name="fname" id="fname" placeholder="Ingresar Dirección" onChange={({target}) => setTitulo(target.value)}/>
+                        <input type="text" class="form-control" name="fname" id="fname" placeholder="Ingresar MercadoPago" onChange={({target}) => setMpURLMercadoPago(target.value)}/>
+                        <a  href='https://cryptoshitcompra.com/tutorial-como-encontrar-la-direccion-de-su-billetera-wallet-en-binance' style={{color:'black'}} target="_blank">¿Que es wallet?</a>
                       </div>
                       : ""
                       }
@@ -226,51 +221,36 @@ const [imagenUrl, setImage] = useState(sinFoto);
                       {
                         mpCriptomonedas ?
                         <div class="col-md-6 form-group">
-                      <input type="text" class="form-control" name="fname" id="fname" placeholder="Ingresar Dirección" onChange={({target}) => setTitulo(target.value)}/>
+                      <input type="text" class="form-control" name="fname" id="fname" placeholder="Ingresar tu wallet" onChange={({target}) => setMpURLCripto(target.value)}/>
+                      <a  href='https://cryptoshitcompra.com/tutorial-como-encontrar-la-direccion-de-su-billetera-wallet-en-binance' style={{color:'black'}} target="_blank">¿Que es wallet?</a>
                       </div>
                       :""
                       }
                     </div>
-                    <br/>
-                      <h5 style={{textAlign:'center'}}>DETALLES</h5>
-                      <br/>
-                      <div>
-                      <div >
+                  </div>
+                  <div>
+                      <div class="p-editor" >
                       <label>Ingresar la descripcion de su proyecto</label>
                         {/* <textarea class="form-control" name="message" id="message" cols="30" rows="7" placeholder="Ingresar una descripcion " onChange={({target}) => setDescripcion(target.value)}></textarea> */}
                         <CKEditor editor={ClassicEditor} onChange={(e,editor) =>{ handleChange(e,editor)}}/>
                       </div>
                     </div>
-                    <div class="row-button-solidar">
-                      <div class="col-md-12">
-                        <input type="submit" value="PUBLICAR"  class="btn btn-success rounded-0 py-2 px-4"/>
-                        <span class="submitting"></span>
-                      </div>
-                    </div>
-                    
-                  </form>
-    
-                </div>
-                <div class="col-lg-4 ml-auto">
-                    <figure>
-                        <img class="logo-form" src={logo}/>
-                    </figure>
-                  <h3 class="h3 mb-4">SUBIR IMAGEN</h3>
-                  <p class="p-detalle ">Debes agregar una buena portada a tu publicacion</p>
-                  <div class="row">
-                    <div class="custom-input-file col-md-6 col-sm-6 col-xs-6">
-                      <input class="input-file" type="file" ref={inputFileRef} onChange={subirImagen}/>
-                      Cargar Portada...
-                    </div>
-                    <img style={{borderRadius:'50px', marginTop:'30px', position:'static',marginLeft: '-20px'}} src={imagenUrl}/>
-                  </div> 
-                </div>
+                  <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="submit">PUBLICAR</button></div>
               </div>
-            </div>  
-            </div>
-          </div> 
-          <Toaster/>
+          </div>
+          
+          <div class="col-md-4">
+              <div class="p-3 py-5">
+                  <div class="d-flex justify-content-between align-items-center experience"><span>Edit Experience</span><span class="border px-3 p-1 add-experience"><i class="fa fa-plus"></i>&nbsp;Experience</span></div><br/>
+                  <div class="col-md-12"><label class="labels">Experience in Designing</label><input type="text" class="form-control" placeholder="experience" /></div> <br/>
+                  <div class="col-md-12"><label class="labels">Additional Details</label><input type="text" class="form-control" placeholder="additional details" /></div>
+              </div>
+          </div>
+         
       </div>
+      </form>
+  </div>
+ 
     )
 }
 

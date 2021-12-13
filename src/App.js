@@ -12,6 +12,7 @@ import FormPublicar from './components/pages/FormPublicar';
 import PerfilUser from './components/pages/PerfilUser';
 import Pagos from './components/pages/Pagos';
 import NotFound from './components/pages/NotFound';
+import PerfilesPublicos from './components/pages/PerfilesPublicos';
 
 /* import { createContext, useContext, useReducer } from 'react'
 
@@ -65,8 +66,9 @@ function App() {
             <Route exact path="/contact" component={Contact}/>
             <Route exact path="/register" component={Register}/>
             <Route exact path="/perfil" component={PerfilUser}/>
+            <Route exact path="/perfiles/:idperfil" component={PerfilesPublicos}/>
             <Route exact path="*" component={NotFound}/>
-            <Route exact path="*" component={NotFound}/>
+           
         </Switch>
       )
   }
