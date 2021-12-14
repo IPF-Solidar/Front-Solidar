@@ -57,7 +57,7 @@ const Navbar = () => {
 const renderLoginButton = () => {
     return(
         <li class="nav-item">
-            <Link to= "/login" class="nav-link page-scroll" href="#features">INICAR SESION</Link>
+            <Link to= "/login" class="nav-link page-scroll" href="#features">INICIAR SESION</Link>
         </li>
     )
  }

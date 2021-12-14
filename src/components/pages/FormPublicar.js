@@ -115,7 +115,7 @@ const FormPublicar = () => {
             
               <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" width="150px" src={imagenUrl}/> <br/>
               <span class="font-weight-bold" style={{color:'black'}}>SUBIR FOTO DE PORTADA</span>
-              <br/>
+              
               <div class="custom-input-file col-md-6 col-sm-6 col-xs-6">
                       <input class="input-file" type="file" ref={inputFileRef} onChange={subirImagen}/>
                       Cargar Portada...
@@ -124,7 +124,7 @@ const FormPublicar = () => {
                     
               </div>
           </div>
-          <div class="col-md-5 border-right">
+          <div class="col-md-7 ">
               <div class="p-3 py-5">
                   <div class="d-flex justify-content-between align-items-center mb-3">
                       <h4 class="text-right" style={{color:'black'}}>Crear Una Historia</h4>
@@ -166,7 +166,7 @@ const FormPublicar = () => {
                           <h4 class="text-right" style={{color:'black'}}>METODOS DE COBRO</h4>
                         </div>
                       <br/>
-                          <div class="col-md-6 form-group">
+                          <div class="col-md-5 form-group">
                               <div class="grid">
                                     <label class="card">
                                         <input class="card__input" type="checkbox" onClick={() => cambiarEstado(!mpMercadoPago)} required />
@@ -186,8 +186,8 @@ const FormPublicar = () => {
                                 </div>
                           </div>
                       
-                        <div class="col-md-6 form-group">
-                        <div class="col-md-6 form-group">
+                        <div class="col-md-5 form-group">
+                        <div class="col-md-5 form-group">
                               <div class="grid">
                                     <label class="card">
                                         <input class="card__input" type="checkbox" onClick={() => cambiarEstado2(!mpCriptomonedas)}/>
@@ -213,7 +213,7 @@ const FormPublicar = () => {
                         mpMercadoPago ?
                         <div class="col-md-6 form-group">
                         <input type="text" class="form-control" name="fname" id="fname" placeholder="Ingresar MercadoPago" onChange={({target}) => setMpURLMercadoPago(target.value)}/>
-                        <a  href='https://cryptoshitcompra.com/tutorial-como-encontrar-la-direccion-de-su-billetera-wallet-en-binance' style={{color:'black'}} target="_blank">¿Que es wallet?</a>
+                        <a  href='https://cryptoshitcompra.com/tutorial-como-encontrar-la-direccion-de-su-billetera-wallet-en-binance' style={{color:'black'}} target="_blank">¿Que Dirección Ingresar?</a>
                       </div>
                       : ""
                       }
@@ -239,13 +239,7 @@ const FormPublicar = () => {
               </div>
           </div>
           
-          <div class="col-md-4">
-              <div class="p-3 py-5">
-                  <div class="d-flex justify-content-between align-items-center experience"><span>Edit Experience</span><span class="border px-3 p-1 add-experience"><i class="fa fa-plus"></i>&nbsp;Experience</span></div><br/>
-                  <div class="col-md-12"><label class="labels">Experience in Designing</label><input type="text" class="form-control" placeholder="experience" /></div> <br/>
-                  <div class="col-md-12"><label class="labels">Additional Details</label><input type="text" class="form-control" placeholder="additional details" /></div>
-              </div>
-          </div>
+          
          
       </div>
       </form>

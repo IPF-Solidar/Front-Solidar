@@ -2,14 +2,14 @@ import React, {useState,useEffect} from 'react'
 import '../assets/styles/css/metodosPagos/mPagos.css'
 import QRCode from "react-qr-code";
 import { useParams } from 'react-router';
-
+import axios from 'axios';
 const Pagos = () => {
 
 
 
 
 
-
+    const [valorDonacion, setValorDonacion]= useState(0);
 	const [stateProfesionales, setStateProfesionales] = useState(null);
     const {proid} = useParams();
     const url = "http://localhost:5000/api/get-publicaciones/"+proid;
@@ -29,6 +29,37 @@ const Pagos = () => {
       
       if(!stateProfesionales){
           return null;
+      }
+
+      const Datos = localStorage.getItem('Solidar-Usuario');
+      const parse = JSON.parse(Datos);
+      const token = parse.token;
+      const actualizarMonto = async () =>{
+          const donacion = parseInt(valorDonacion);
+          const MontoExistente = parseInt(stateProfesionales.dineroActual);
+          const dineroActual = donacion + MontoExistente;
+          console.log(dineroActual)
+
+          const urlDinero = "http://localhost:5000/api/editMonto-publicacion/"+proid
+          
+
+			const raw = JSON.stringify({
+				dineroActual: dineroActual
+			})
+
+			const options = {
+				method: 'PUT',
+			    headers:{
+                    'x-token': token,
+                    'Content-Type': 'application/json'
+                  },
+				body: raw,
+				redirect: 'follow'
+			}
+
+			const postData = await fetch(urlDinero, options)
+			const res = postData.json()
+			console.log(res)
       }
 
     return (
@@ -53,17 +84,21 @@ const Pagos = () => {
                 <section id="content1">
                 {
                     stateProfesionales.mpMercadoPago ?
-                    <form action="http://localhost:5000/checkout" method="POST" /* target="_blank" */>
+                    <form action="http://localhost:5000/checkout" method="POST" target="_blank">
                                 <img style={{width:'50%',position:'relative', left:'170px'}}src='https://hvghobbies.com/wp-content/uploads/2019/07/mercadopago-01-e1562863464953.png?w=640'/>
                                 <br/><br/>
                                 <h2 style={{textAlign:'center', color:'cyan'}}>Ingresar el monto que desea donar</h2>
                                 <h4 style={{fontFamily:'arial', textAlign:'center'}}>{stateProfesionales.titulo}</h4>
                                 <input type="hidden" name="title" value={stateProfesionales.titulo}/> 
                              
-                                <input type="number"  name="price"  placeholder='Ingresar valor'/>
+                                <input type="number"  name="price"  placeholder='Ingresar valor' onChange={({target}) => setValorDonacion(target.value)}  required/>
                                 
                                 <br/>    <br/>    <br/>                      
-                                <input type="submit" value="Donar"  class="btn btn-success btn-block"/>
+                               {
+                                   valorDonacion ?
+                                   <input type="submit" value="Donar" onClick={actualizarMonto} class="btn btn-success btn-block"/>
+                                   :""
+                               }
                 </form>
                 :<h3 style={{textAlign:'center'}}><i class="bx bxs-message-square-error"></i> No puedes donar con este metodo</h3>
                 }

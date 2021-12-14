@@ -5,7 +5,7 @@ import parse from 'html-react-parser';
 
 import { useParams } from 'react-router';
 import { Link } from 'react-router-dom';
-import login from '../assets/DB/login';
+/* import login from '../assets/DB/login'; */
 
 
 const Detalle = () => {
@@ -19,7 +19,7 @@ const Detalle = () => {
     const mes = (fechaHoy.getMonth()+1)
     const año = fechaHoy.getFullYear()
     const fechaActual =  dia +'/'+ mes +  '/' + año
-    /* console.log(fechaActual) */
+    console.log(fechaActual)
 
   
     
@@ -224,11 +224,11 @@ const Detalle = () => {
                                             
                                             { 
                                                 comentarios.length > 0 ? comentarios.map(item => { 
-                                                    let fecha = new Date(item.fecha)
+                                                    /* let fecha = new Date(item.fecha)
                                                     const dia = (fecha.getDate()+1);
                                                     const mes = (fecha.getMonth()+1)
                                                     const año = fecha.getFullYear()
-                                                    const fechaPublicacion =  dia +'/'+ mes +  '/' + año
+                                                    const fechaPublicacion =  dia +'/'+ mes +  '/' + año */
                                                     
                                                     return( 
                                                         <div class="media">
@@ -237,7 +237,7 @@ const Detalle = () => {
                                                             <Link to={{pathname:'/perfiles/' + item.autor._id}} style={{textDecoration: 'none'}}><h4 class="media-heading" >{item.autor.nombre} {item.autor.apellido}</h4></Link>
                                                             <p>{item.descripcion}</p>
                                                             <ul class="list-unstyled list-inline media-detail pull-left">
-                                                                <li><i class="fa fa-calendar"></i>{fechaPublicacion}</li>                                                     
+                                                                <li><i class="fa fa-calendar"></i>{item.fecha}</li>                                                     
                                                             </ul>
 
                                                         </div>
